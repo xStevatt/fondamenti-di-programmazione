@@ -12,7 +12,7 @@ public class CuoreSolitario
 		this.sesso = sesso; 
 		this.eta = eta; 
 		this.segno_zodiacale = segno_zodiacale; 
-		this.segno_zodiacale_preferito = segno_zodiacale_preferito; 
+		this.segno_zodiacale_preferito = segno_zodicale_preferito; 
 	}
 	
 	public String getNome() {
