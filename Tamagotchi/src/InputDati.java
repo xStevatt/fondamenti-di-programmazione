@@ -2,6 +2,10 @@ import java.util.Scanner;
 
 public class InputDati 
 {
+	private static final String IL_NUMERO_INSERITO_NON_È_UN_INTERO_RIPROVARE = "Il numero inserito non è un intero! Riprovare: ";
+	private static final String HAI_SCELTO_UNA_POSSIBILITÀ_NON_VALIDA_RIPROVARE = "Hai scelto una possibilità non valida! Riprovare: ";
+	private static final String INSERIMENTO_VUOTO_RIPROVARE = "Inserimento vuoto! Riprovare: ";
+	
 	static Scanner input_scanner = new Scanner(System.in); 
 	
 	// METODO PER L'INSERIMENTO DI UNA STRINGA SENZA REQUISITI (qualunque stringa inserita sarà considerata valida). 
@@ -15,7 +19,7 @@ public class InputDati
 			string_input = input_scanner.nextLine().trim(); 
 			
 			if(string_input.length() == 0)
-				System.out.print("Inserimento vuoto! Riprovare: ");
+				System.out.print(INSERIMENTO_VUOTO_RIPROVARE);
 		}
 		while(string_input.length() == 0); 
 		
@@ -35,7 +39,7 @@ public class InputDati
 			
 			if(string_input.length() == 0)
 			{
-				System.out.print("Inserimento vuoto! Riprovare: ");
+				System.out.print(INSERIMENTO_VUOTO_RIPROVARE);
 
 			}
 			else
@@ -51,7 +55,7 @@ public class InputDati
 				if(isValid)
 					return string_input; 
 				else
-					System.out.print("Inserire una stringa valida! Riprovare: ");
+					System.out.print(HAI_SCELTO_UNA_POSSIBILITÀ_NON_VALIDA_RIPROVARE);
 			}
 		}
 		while(string_input.length() == 0 || !isValid); 
@@ -64,14 +68,15 @@ public class InputDati
 	{
 		int intero = 0; 
 		System.out.print(messaggio_richiesta); 
-		do
+
+		try
 		{
 			intero = input_scanner.nextInt(); 
-			
-			if(intero != (int) intero)
-				System.out.print("Il numero inserito non è un intero! Riprovare: ");
 		}
-		while(intero != (int) intero); 
+		catch (java.util.InputMismatchException e) 
+		{
+			System.out.println(IL_NUMERO_INSERITO_NON_È_UN_INTERO_RIPROVARE);
+		}
 		
 		return intero; 
 	}
@@ -80,24 +85,32 @@ public class InputDati
 	public static int inputInteger(String messaggio_richiesta, int min, int max) 
 	{
 		int intero = 0; 
-		boolean isValid = false; 
+		boolean isValid = false;
+		boolean isSuccessful = false; 
 		
 		System.out.print(messaggio_richiesta); 
 		do
 		{
-			intero = input_scanner.nextInt(); 
-			
-			if(intero != (int) intero)
+			try 
 			{
-				System.out.print("Il numero inserito non è un intero! Riprovare: ");
+				intero = input_scanner.nextInt();
+				isSuccessful = true; 
 			}
-			else
+			catch (java.util.InputMismatchException e) 
+			{
+				System.out.print(IL_NUMERO_INSERITO_NON_È_UN_INTERO_RIPROVARE);
+				String stringa_catch = input_scanner.next();
+			}
+			
+			if(isSuccessful)
 			{
 				if(intero >= min && intero <= max)
-					isValid = true;
+					isValid = !isValid;
+				else
+					System.out.print(HAI_SCELTO_UNA_POSSIBILITÀ_NON_VALIDA_RIPROVARE);
 			}
 		}
-		while(intero != (int) intero && !isValid); 
+		while(!isValid && !isSuccessful); 
 		
 		return intero; 
 	}	
