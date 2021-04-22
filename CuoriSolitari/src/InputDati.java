@@ -42,7 +42,7 @@ public class InputDati
 			{
 				for(int i = 0; i < string_asset.length; i++)
 				{
-					if(string_input.equalsIgnoreCase(string_asset[i]))
+					if(string_input.equalsIgnoreCase(string_asset[i])) // string_asset[0] = "M" string_asset[1] = "F"
 					{
 						isValid = !isValid; 
 						break; 

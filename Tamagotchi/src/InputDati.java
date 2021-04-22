@@ -12,7 +12,7 @@ public class InputDati
 		System.out.print(messaggio_richiesta);
 		do
 		{
-			string_input = input_scanner.next().trim(); 
+			string_input = input_scanner.nextLine().trim(); 
 			
 			if(string_input.length() == 0)
 				System.out.print("Inserimento vuoto! Riprovare: ");
@@ -31,7 +31,7 @@ public class InputDati
 		System.out.print(messaggio_richiesta);
 		do
 		{
-			string_input = input_scanner.next().trim(); 
+			string_input = input_scanner.nextLine().trim(); 
 			
 			if(string_input.length() == 0)
 			{

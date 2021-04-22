@@ -2,8 +2,9 @@ import java.util.Random;
 
 public class TamagotchiMain 
 {
+	private static final String VAI_A_CAPO = "\n";
 	private static final String INSERISCI_IL_NOME_DEL_TAMAGOTCHI = "Inserisci il nome del tamagotchi: ";
-	private static final String TAMAGOTCHI_MORTE = "Tamagotchi è morto. RIP Tama.";
+	private static final String TAMAGOTCHI_MORTE = " è morto. RIP Tamagotchi.";
 	private static final String TAMAGOTCHI_È_INFELICE = "Tamagotchi è infelice";
 	private static final String GRADO_SAZIETÀ = "Grado Sazietà: ";
 	private static final String SODDISFAZIONE_AFFETTIVA = "Soddisfazione affettiva: ";
@@ -38,24 +39,30 @@ public class TamagotchiMain
 	
 	public static void mostraMenu()
 	{
-		int scelta; 
+		int scelta = -1; 
 		Tamagotchi tamagotchi = creaTamagotchi(); 
 		Random random = new Random(); 
 		
-		do
+		while(scelta != 0 && tamagotchi.isAlive())
 		{
 			scelta = InputDati.inputInteger(MESSAGGIO_MENU, 0, 2); // 0 -> scelta minima possibile | 2 -> scelta massima possibile
 			
 			switch(scelta)
 			{
 				case DAI_BISCOTTI: 
-					tamagotchi.daiBiscotto(random.nextInt(MAX_BISCOTTI) + MIN_BISCOTTI);
+					int biscotti_dati = random.nextInt(MAX_BISCOTTI) + MIN_BISCOTTI; 
+					tamagotchi.daiBiscotto(biscotti_dati);
+					System.out.println("Hai dato " + biscotti_dati + " biscotti a " + tamagotchi.getNome());
+					System.out.println(VAI_A_CAPO); 
 					break; 
 				case DAI_CAREZZE: 
-					tamagotchi.daiCarezze(random.nextInt(MAX_CAREZZE) + MIN_CAREZZE);
-					break;
+					int carezze_date = random.nextInt(MAX_CAREZZE) + MIN_CAREZZE; 
+					tamagotchi.daiCarezze(carezze_date);
+					System.out.println("Hai dato " + carezze_date + " carezze a " + tamagotchi.getNome());
+					System.out.println(VAI_A_CAPO); 
+					break; 
 				case CHIUDI_PROGRAMMA: 
-					System.out.println("Mancherai al tuo tamagotchi!");
+					System.out.println("Mancherai a " + tamagotchi.getNome() + "!");
 			}
 			
 			if(tamagotchi.isAlive() && scelta != 0)
@@ -65,20 +72,24 @@ public class TamagotchiMain
 					System.out.println(TAMAGOTCHI_È_FELICE);
 					System.out.println(SODDISFAZIONE_AFFETTIVA + tamagotchi.getSodd_affettiva());
 					System.out.println(GRADO_SAZIETÀ + tamagotchi.getGrado_sazieta());
+					System.out.println(VAI_A_CAPO); 
 				}
 				else
 				{
 					System.out.println(TAMAGOTCHI_È_INFELICE);
 					System.out.println(SODDISFAZIONE_AFFETTIVA + tamagotchi.getSodd_affettiva());
 					System.out.println(GRADO_SAZIETÀ + tamagotchi.getGrado_sazieta());
+					System.out.println(VAI_A_CAPO); 
 				}
 			}
-			if(!tamagotchi.isAlive() && scelta != 0)
-			{
-				System.out.println(TAMAGOTCHI_MORTE);
-			}
 		}
-		while(scelta != 0 && tamagotchi.isAlive()); 
+		if(!tamagotchi.isAlive() && scelta != 0)
+		{
+			System.out.println(tamagotchi.getNome() + TAMAGOTCHI_MORTE);
+			System.out.println(SODDISFAZIONE_AFFETTIVA + tamagotchi.getSodd_affettiva());
+			System.out.println(GRADO_SAZIETÀ + tamagotchi.getGrado_sazieta());
+			System.out.println("Causa della morte: " + tamagotchi.determinaCausaMorte());
+		}
 	}
 	
 	public static Tamagotchi creaTamagotchi()
@@ -87,8 +98,10 @@ public class TamagotchiMain
 		int sodd_aff_ini = InputDati.inputInteger(INSERIRE_IL_GRADO_DI_SODDISFAZIONE_AFFETTIVA_INIZIALE, SODDISFAZIONE_AFFETTIVA_MINIMA_INIZIALE, SODDISFAZIONE_AFFETTIVA_MASSIMA_INIZIALE); 
 		int grad_saz_ini = InputDati.inputInteger(INSERIRE_IL_GRADO_DI_SAZIETÀ_INIZIALE, GRADO_SAZIETA_MINIMO_INIZIALE, GRADO_SAZIETA_MASSIMO_INIZIALE); 
 		
-		Tamagotchi tamagotchi = new Tamagotchi(sodd_aff_ini, grad_saz_ini, nome); 
-
+		Tamagotchi tamagotchi = new Tamagotchi(sodd_aff_ini, grad_saz_ini, nome);
+		// Controlla che il tamagotchi sia vivo, infatti l'utente potrebbe avere inserito dati iniziali che causano la morte del tamagotchi
+		tamagotchi.isTamaAlive(); 
+		
 		return tamagotchi; 
 	}
 }

@@ -1,5 +1,6 @@
 public class Tamagotchi 
 {
+	// DICHIARAZIONE COSTANTI 
 	private static final int MIN_AFF_VALUE= 0;
 	private static final int MIN_SAZ_VALUE = 0;
 	private static final int MAX_AFF_VALUE= 100;
@@ -9,6 +10,13 @@ public class Tamagotchi
 	private static final int BAD_SAZ_VALUE = 90;
 	private static final int GOOD_AFF_VALUE = 30; 
 	
+	private static final String CAUSA_MORTE_TROPPO_CIBO_SAZIETÀ_MAGGIORE_DI_90 = "Troppo cibo. Sazietà maggiore di 90.";
+	private static final String CAUSA_MORTE_NECESSITÀ_CIBO_E_AFFETTO_AFFETTO_E_SAZIETÀ_0 = "Necessità cibo e affetto. Affetto e sazietà = 0";
+	private static final String CAUSA_MORTE_NECESSITÀ_CIBO_CIBO_0 = "Necessità cibo. Cibo = 0.";
+	private static final String CAUSA_MORTE_MANCANZA_AFFETTO_AFFETTO_0 = "Mancanza affetto. Affetto = 0.";
+	private static final String[] CAUSA_MORTE = {CAUSA_MORTE_MANCANZA_AFFETTO_AFFETTO_0, CAUSA_MORTE_NECESSITÀ_CIBO_CIBO_0, CAUSA_MORTE_NECESSITÀ_CIBO_E_AFFETTO_AFFETTO_E_SAZIETÀ_0, CAUSA_MORTE_TROPPO_CIBO_SAZIETÀ_MAGGIORE_DI_90}; 
+	
+	// DICHIARAZIONE ATTRIBUTI
 	private String nome; 
 	private int sodd_affettiva; 
 	private int grado_sazieta; 
@@ -29,6 +37,35 @@ public class Tamagotchi
 					    && grado_sazieta < MAX_SAZ_VALUE; 
 	}
 	
+	public String determinaCausaMorte()
+	{
+		if(sodd_affettiva == MIN_SAZ_VALUE && grado_sazieta == MIN_AFF_VALUE)
+		{
+			this.setAlive(false);
+			return CAUSA_MORTE_NECESSITÀ_CIBO_E_AFFETTO_AFFETTO_E_SAZIETÀ_0; 
+		}
+		else if(sodd_affettiva == MIN_AFF_VALUE)
+		{
+			this.setAlive(false);
+			return CAUSA_MORTE_MANCANZA_AFFETTO_AFFETTO_0; 
+		}
+		else if(grado_sazieta == MIN_SAZ_VALUE)
+		{
+			this.setAlive(false);
+			return CAUSA_MORTE_NECESSITÀ_CIBO_CIBO_0; 
+		}
+		else if(grado_sazieta == MAX_AFF_VALUE)
+		{
+			this.setAlive(false);
+			return CAUSA_MORTE_TROPPO_CIBO_SAZIETÀ_MAGGIORE_DI_90; 
+		}
+		else
+		{
+			this.setAlive(true);
+		}
+		return ""; 
+	}
+	
 	public void isTamaFelice()
 	{
 		this.isFelice = sodd_affettiva > GOOD_AFF_VALUE && (grado_sazieta > GOOD_SAZ_VALUE && grado_sazieta < BAD_SAZ_VALUE); 
@@ -36,7 +73,7 @@ public class Tamagotchi
 	
 	public void daiBiscotto(int n_biscotti)
 	{
-		this.grado_sazieta = Math.min(100, (this.grado_sazieta * 10 / 100) * n_biscotti); 
+		this.grado_sazieta = Math.min(100, this.grado_sazieta + ((this.grado_sazieta * 10 / 100) * n_biscotti)); 
 		this.sodd_affettiva = Math.max(0, this.sodd_affettiva - n_biscotti / 4); 
 		this.isTamaAlive();
 	}
@@ -44,7 +81,7 @@ public class Tamagotchi
 	public void daiCarezze(int n_carezze)
 	{
 		this.sodd_affettiva = Math.min(100, this.sodd_affettiva + n_carezze); 
-		this.grado_sazieta = Math.max(0, grado_sazieta - n_carezze / 2); 
+		this.grado_sazieta = Math.max(0, this.grado_sazieta - n_carezze / 2); 
 		this.isTamaAlive();
 	}
 
