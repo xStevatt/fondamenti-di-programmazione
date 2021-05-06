@@ -4,7 +4,6 @@ import java.util.Scanner;
 /**
  * 
  * @author Stefano Valloncini
- * @author Luigi Amarante
  * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
  */
 
@@ -16,11 +15,7 @@ public class InputDati
 	
 	static Scanner input_scanner = new Scanner(System.in); 
 	
-	/***
-	 * 
-	 * @param messaggio_richiesta - indica il messaggio che viene mostrato all'utente che dà indicazioni sull'inserimento
-	 * @return string_input - la stringa inserita
-	 */
+	// METODO PER L'INSERIMENTO DI UNA STRINGA SENZA REQUISITI (qualunque stringa inserita sarà considerata valida). 
 	public static String inputString(String messaggio_richiesta)
 	{
 		String string_input = ""; 
@@ -28,22 +23,19 @@ public class InputDati
 		System.out.print(messaggio_richiesta);
 		do
 		{
-			string_input = input_scanner.nextLine().trim(); 
+			string_input = input_scanner.next().trim(); 
 			
 			if(string_input.length() == 0)
 				System.out.print(INSERIMENTO_VUOTO_RIPROVARE);
 		}
 		while(string_input.length() == 0); 
 		
+		input_scanner.nextLine(); 
+		
 		return string_input; 
 	}
 	
-	/***
-	 * 
-	 * @param messaggio_richiesta - indica il messaggio che viene mostrato all'utente che dà indicazioni sull'inserimento
-	 * @param string_asset - array di stringhe: si verifica che la stringa inserita corrisponda ad uno degli elementi dell'array
-	 * @return string_input - la stringa inserita
-	 */
+	// METODO PER L'INSERIMENTO DI UNA STRINGA CON IL REQUISITO DI APPARTENERE AD UN "ASSET" (cioè un insieme di valori possibili).  
 	public static String inputString(String messaggio_richiesta, String [] string_asset)
 	{
 		String string_input = ""; 
@@ -52,12 +44,11 @@ public class InputDati
 		System.out.print(messaggio_richiesta);
 		do
 		{
-			string_input = input_scanner.nextLine().trim(); 
+			string_input = input_scanner.next().trim(); 
 			
 			if(string_input.length() == 0)
 			{
 				System.out.print(INSERIMENTO_VUOTO_RIPROVARE);
-
 			}
 			else
 			{
@@ -77,14 +68,12 @@ public class InputDati
 		}
 		while(string_input.length() == 0 || !isValid); 
 		
+		input_scanner.nextLine(); 
+		
 		return string_input; 
 	}	
 	
-	/***
-	 * 
-	 * @param messaggio_richiesta - indica il messaggio che viene mostrato all'utente che dà indicazioni sull'inserimento
-	 * @return intero - ritorna l'intero inserito 
-	 */
+	// METODO PER L'INSERIMENTO DI UN INTERO QUALUNQUE
 	public static int inputInteger(String messaggio_richiesta) 
 	{
 		int intero = 0; 
@@ -102,13 +91,7 @@ public class InputDati
 		return intero; 
 	}
 	
-	/***
-	 * 
-	 * @param messaggio_richiesta - indica il messaggio che viene mostrato all'utente che dà indicazioni sull'inserimento
-	 * @param min - indica il minimo numero ammesso all'input (compreso)
-	 * @param max - indica il massimo numero ammesso all'input (compreso)
-	 * @return intero - ritorna l'intero inserito in input, dopo aver verificato che esso sia valido
-	 */
+	// METODO PER L'INSERIMENTO DI UN INTERO CHE DEVE ESSERE COMPRESO TRA UN PARTICOLARE RANGE
 	public static int inputInteger(String messaggio_richiesta, int min, int max) 
 	{
 		int intero = 0; 
@@ -132,9 +115,14 @@ public class InputDati
 			if(isSuccessful)
 			{
 				if(intero >= min && intero <= max)
+				{
 					isValid = !isValid;
+				}
 				else
+				{
 					System.out.print(HAI_SCELTO_UNA_POSSIBILITÀ_NON_VALIDA_RIPROVARE);
+					String stringa_catch = input_scanner.next();
+				}
 			}
 		}
 		while(!isValid && !isSuccessful); 

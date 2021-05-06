@@ -4,6 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * 
+ * @author Stefano Valloncini
+ * @author Luigi Amarante
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
+
 public class TamaTestMatricole
 {
     	// Attenzione, costruttore utilizzato:
@@ -15,7 +22,7 @@ public class TamaTestMatricole
 		final Tamagotchi tama = new Tamagotchi("Kira", 0, 50);
 		assertTrue(tama.sonoMorto());
 	}
-	
+
 	@Test
 	public void dieForZeroHunger() throws Exception 
 	{
@@ -49,8 +56,6 @@ public class TamaTestMatricole
 		final Tamagotchi tama = new Tamagotchi("Kira", 50, 50);
 		tama.riceviCarezze(1);
 		assertFalse(tama.sonoTriste());
-		// sonoTriste() -> true: è triste
-		// sonoTriste() -> false: è felice 
 	}
 	
 	@Test

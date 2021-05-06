@@ -2,45 +2,63 @@ package it.unibs.fp.lab.tamagotchi;
 
 /**
  * 
- * @author Stefano Valloncini
+ * @author Stefano Valloncini - Leader
  * @author Luigi Amarante
  * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
  */
 
-public class Tamagotchi 
-{
-	// DICHIARAZIONE COSTANTI 
-	private static final int MIN_AFF_VALUE= 0;
+public class Tamagotchi {
+	// DICHIARAZIONE COSTANTI
+	private static final int MIN_AFF_VALUE = 0;
 	private static final int MIN_SAZ_VALUE = 0;
-	private static final int MAX_AFF_VALUE= 100;
+	private static final int MAX_AFF_VALUE = 100;
 	private static final int MAX_SAZ_VALUE = 100;
-	
-	private static final int GOOD_SAZ_VALUE = 30; 
+
+	private static final int GOOD_SAZ_VALUE = 30;
 	private static final int BAD_SAZ_VALUE = 90;
-	private static final int GOOD_AFF_VALUE = 30; 
-	
+	private static final int GOOD_AFF_VALUE = 30;
+
 	private static final String CAUSA_MORTE_TROPPO_CIBO_SAZIETÀ_MAGGIORE_DI_90 = "Troppo cibo. Sazietà maggiore di 90.";
 	private static final String CAUSA_MORTE_NECESSITÀ_CIBO_E_AFFETTO_AFFETTO_E_SAZIETÀ_0 = "Necessità cibo e affetto. Affetto e sazietà = 0";
 	private static final String CAUSA_MORTE_NECESSITÀ_CIBO_CIBO_0 = "Necessità cibo. Cibo = 0.";
 	private static final String CAUSA_MORTE_MANCANZA_AFFETTO_AFFETTO_0 = "Mancanza affetto. Affetto = 0.";
-	private static final String[] CAUSA_MORTE = {CAUSA_MORTE_MANCANZA_AFFETTO_AFFETTO_0, CAUSA_MORTE_NECESSITÀ_CIBO_CIBO_0, CAUSA_MORTE_NECESSITÀ_CIBO_E_AFFETTO_AFFETTO_E_SAZIETÀ_0, CAUSA_MORTE_TROPPO_CIBO_SAZIETÀ_MAGGIORE_DI_90}; 
-	
+	private static final String[] CAUSA_MORTE = { CAUSA_MORTE_MANCANZA_AFFETTO_AFFETTO_0,
+			CAUSA_MORTE_NECESSITÀ_CIBO_CIBO_0, CAUSA_MORTE_NECESSITÀ_CIBO_E_AFFETTO_AFFETTO_E_SAZIETÀ_0,
+			CAUSA_MORTE_TROPPO_CIBO_SAZIETÀ_MAGGIORE_DI_90 };
+
 	// DICHIARAZIONE ATTRIBUTI
-	private String nome; 
-	private int sodd_affettiva; 
-	private int grado_sazieta; 
-	private boolean isAlive; 
-	private boolean isFelice; 
+	private String nome;
+	private int sodd_affettiva;
+	private int grado_sazieta;
 	
-	public Tamagotchi(String nome, int sodd_affettiva, int grado_sazieta)
+	private boolean isAlive;
+	private boolean isFelice;
+	
+	private int grado_benessere;
+	private int peso1;
+	private int peso2;
+
+	public Tamagotchi(String nome, int sodd_affettiva, int grado_sazieta) 
 	{
-		this.sodd_affettiva = sodd_affettiva; 
-		this.grado_sazieta = grado_sazieta; 
-		this.nome = nome; 
-		this.isTamaAlive(); 
+		this.sodd_affettiva = sodd_affettiva;
+		this.grado_sazieta = grado_sazieta;
+		this.nome = nome;
+		this.isTamaAlive();
+
+		this.peso1 = 1;
+		this.peso2 = 1;
 	}
+
+	public Tamagotchi(String nome, int sodd_affettiva, int grado_sazieta, int peso1, int peso2) 
+	{
+		this(nome, sodd_affettiva, grado_sazieta);
+
+		this.peso1 = peso1;
+		this.peso2 = peso2;
+	}
+
 	
-	/***
+	/**
 	 * Controlla che il tamagotchi sia ancora vivo. 
 	 * Il controllo si basa sulle due condizioni:
 	 * 	1. Soddisfazione affettiva > MIN_SAZ_VALUE (default: 0) e contemporaneamente grado_sazietà > MIN_AFF_VALUE (default: 0). 
@@ -48,78 +66,78 @@ public class Tamagotchi
 	 * 	2. Grado sazietà < MAX_SAZ_VALUE (default: 90). Il grado di sazietà dunque deve essere minore di un valore massimo impostato, 
 	 * 	   oltre il quale il tamagotchi muore. 
 	 */
-	public void isTamaAlive()
+	public void isTamaAlive() 
 	{
 		this.isAlive = (sodd_affettiva > MIN_SAZ_VALUE && grado_sazieta > MIN_AFF_VALUE)
-					    && grado_sazieta < MAX_SAZ_VALUE; 
+				&& grado_sazieta < MAX_SAZ_VALUE;
 	}
 	
-	/***
-	 * Determina se il tamagotchi è felice o meno. Se è felice allora isFelice = true, altrimenti isFelice = false; 
-	 */
-	public void isTamaFelice()
-	{
-		this.isFelice = sodd_affettiva >= 30 && grado_sazieta >= 30 && grado_sazieta <= 90; 
-	}
-	
-	/***
+	/**
 	 * Determina qual è la causa della morte del tamagotchi a seconda dei valori assunti da sodd_affettiva e grado_sazieta. 
 	 * @return String - una stringa (costante) che contiene la causa della morte del tamagotchi
 	 */
-	public String determinaCausaMorte()
+	public String determinaCausaMorte() 
 	{
-		if(sodd_affettiva == MIN_SAZ_VALUE && grado_sazieta == MIN_AFF_VALUE)
+		if (sodd_affettiva == MIN_SAZ_VALUE && grado_sazieta == MIN_AFF_VALUE) 
 		{
 			this.setAlive(false);
-			return CAUSA_MORTE_NECESSITÀ_CIBO_E_AFFETTO_AFFETTO_E_SAZIETÀ_0; 
-		}
-		else if(sodd_affettiva == MIN_AFF_VALUE)
+			return CAUSA_MORTE_NECESSITÀ_CIBO_E_AFFETTO_AFFETTO_E_SAZIETÀ_0;
+		} 
+		else if (sodd_affettiva == MIN_AFF_VALUE) 
 		{
 			this.setAlive(false);
-			return CAUSA_MORTE_MANCANZA_AFFETTO_AFFETTO_0; 
-		}
-		else if(grado_sazieta == MIN_SAZ_VALUE)
+			return CAUSA_MORTE_MANCANZA_AFFETTO_AFFETTO_0;
+		} 
+		else if (grado_sazieta == MIN_SAZ_VALUE) 
 		{
 			this.setAlive(false);
-			return CAUSA_MORTE_NECESSITÀ_CIBO_CIBO_0; 
-		}
-		else if(grado_sazieta == MAX_AFF_VALUE)
+			return CAUSA_MORTE_NECESSITÀ_CIBO_CIBO_0;
+		} 
+		else if (grado_sazieta == MAX_AFF_VALUE) 
 		{
 			this.setAlive(false);
-			return CAUSA_MORTE_TROPPO_CIBO_SAZIETÀ_MAGGIORE_DI_90; 
-		}
-		else
+			return CAUSA_MORTE_TROPPO_CIBO_SAZIETÀ_MAGGIORE_DI_90;
+		} 
+		else 
 		{
 			this.setAlive(true);
 		}
-		return ""; 
+		return "";
 	}
-		
-	/***
+	
+	/**
+	 * Determina se il tamagotchi è felice o meno. Se è felice allora isFelice = true, altrimenti isFelice = false; 
+	 */
+	public void isTamaFelice() 
+	{
+		this.isFelice = sodd_affettiva >= 30 && grado_sazieta >= 30 && grado_sazieta <= 90;
+	}
+
+	/**
 	 * Permette di dare al tamagotchi dei biscotti e cambia i valori grado_sazieta e sodd_affettiva di conseguenza
 	 * Verifica che il tamagotchi sia ancora vivo ogni volta che diamo dei biscotti con il metodo isAlive()
 	 * @param n_biscotti - il numero di biscotti che diamo al tamagotchi
 	 */
-	public void riceviBiscotti(int n_biscotti)
+	public void riceviBiscotti(int n_biscotti) 
 	{
-		this.grado_sazieta = Math.min(100, this.grado_sazieta + ((this.grado_sazieta * 10 / 100) * n_biscotti)); 
-		this.sodd_affettiva = Math.max(0, this.sodd_affettiva - n_biscotti / 4); 
-		this.isTamaAlive(); 
+		this.grado_sazieta = Math.min(100, this.grado_sazieta + ((this.grado_sazieta * 10 / 100) * n_biscotti));
+		this.sodd_affettiva = Math.max(0, this.sodd_affettiva - n_biscotti / 4);
+		this.isTamaAlive();
 	}
-	
-	/***
+
+	/**
 	 * Permette di dare al tamagotchi delle carezze e cambia i valori grado_sazieta e sodd_affettiva di conseguenza
 	 * Verifica che il tamagotchi sia ancora vivo ogni volta che diamo dei biscotti con il metodo isAlive()
 	 * @param n_carezze - il numero di carezze che diamo al tamagotchi
 	 */
-	public void riceviCarezze(int n_carezze)
+	public void riceviCarezze(int n_carezze) 
 	{
-		this.sodd_affettiva = Math.min(100, this.sodd_affettiva + n_carezze); 
-		this.grado_sazieta = Math.max(0, this.grado_sazieta - n_carezze / 2); 
-		this.isTamaAlive(); 
+		this.sodd_affettiva = Math.min(100, this.sodd_affettiva + n_carezze);
+		this.grado_sazieta = Math.max(0, this.grado_sazieta - n_carezze / 2);
+		this.isTamaAlive();
 	}
-	
-	/***
+
+	/**
 	 * 
 	 * @return boolean - ritorna se il tamgotchi è vivo o morto. 
 	 * 1. Ritorna true: controlla se isAlive == false (cioè non è vivo, dunque morto)												   
@@ -127,60 +145,91 @@ public class Tamagotchi
 	 */
 	public boolean sonoMorto() 
 	{
-		return isAlive == true ? false : true; 
+		isTamaAlive();
+		return isAlive == true ? false : true;
 	}
-	 
-	/***
+
+	/**
 	 * 
 	 * @return boolean - ritorna se il tamagotchi è triste o felice
 	 * 1. Ritorna true: tamagotchi è triste (isFelice = falso)
 	 * 2. Ritorna false: tamagotchi è felice (isFelice = true) 
 	 */
-	public boolean sonoTriste()
+	public boolean sonoTriste() 
 	{
 		isTamaFelice();
-		return isFelice == true ? false : true; 
+		return isFelice == true ? false : true;
 	}
-	
-	// GETTERS AND SETTERS
-	
-	public String getNome() {
+
+	/**
+	 * Calcola il grado di benessere del tamagotchi. Esso viene calcoltato in base ai pesi inseriti dall'utente. 
+	 * Grado benessere = (sodd_affettiva * peso1 + grado_sazieta * peso2) / (peso1 + peso2)
+	 * I pesi di default sono posti uguali ad uno, tuttavia possono essere modificati dall'utente
+	 */
+	public void trovaBenessere() 
+	{
+		grado_benessere = (sodd_affettiva * peso1 + grado_sazieta * peso2) / (peso1 + peso2);
+		grado_benessere = Math.min(100, grado_benessere);
+		grado_benessere = Math.max(0, grado_benessere);
+	}
+
+	/*
+	 * GETTERS AND SETTERS
+	 */
+
+	public String getNome() 
+	{
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(String nome) 
+	{
 		this.nome = nome;
 	}
-	
-	public int getSodd_affettiva() {
+
+	public int getSodd_affettiva() 
+	{
 		return sodd_affettiva;
 	}
 
-	public void setSodd_affettiva(int sodd_affettiva) {
+	public void setSodd_affettiva(int sodd_affettiva) 
+	{
 		this.sodd_affettiva = sodd_affettiva;
 	}
 
-	public int getGrado_sazieta() {
+	public int getGrado_sazieta() 
+	{
 		return grado_sazieta;
 	}
 
-	public void setGrado_sazieta(int grado_sazieta) {
+	public void setGrado_sazieta(int grado_sazieta) 
+	{
 		this.grado_sazieta = grado_sazieta;
 	}
 
-	public boolean isAlive(){
-		return isAlive; 
+	public boolean isAlive() 
+	{
+		return isAlive;
 	}
-	
-	public void setAlive(boolean isAlive) {
+
+	public void setAlive(boolean isAlive) 
+	{
 		this.isAlive = isAlive;
 	}
 
-	public boolean isFelice() {
+	public boolean isFelice() 
+	{
+		isTamaFelice();
 		return isFelice;
 	}
 
-	public void setFelice(boolean isFelice) {
+	public void setFelice(boolean isFelice) 
+	{
 		this.isFelice = isFelice;
+	}
+
+	public int getGrado_benessere() 
+	{
+		return grado_benessere;
 	}
 }
