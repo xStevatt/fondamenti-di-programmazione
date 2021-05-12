@@ -37,7 +37,10 @@ public class Settimana
 	{
 		double somma = 0.0; 
 		
-		for(int i = 0; i < GIORNI_SETTIMANA; i++, somma += dati_giornalieri[i]); 
+		for(double temp : dati_giornalieri)
+		{
+			somma += temp; 
+		}
 		
 		return somma; 
 	}
@@ -46,7 +49,10 @@ public class Settimana
 	{	
 		double somma = 0.0;
 		
-		for(int i = 0; i < GIORNI_SETTIMANA; i++, somma += dati_giornalieri[i]); 
+		for(double temp : dati_giornalieri)
+		{
+			somma += temp; 
+		}
 		
 		return somma / GIORNI_SETTIMANA; 
 	}
@@ -55,35 +61,41 @@ public class Settimana
 	{
 		double max = 0.0; 
 		
-		for(int i = 0; i < GIORNI_SETTIMANA; i++)
+		for(double temp : dati_giornalieri)
 		{
-			max = Math.max(max, dati_giornalieri[i]); 
+			max = Math.max(max, temp); 
 		}
 		return max; 
 	}
 	
 	// GETTERS AND SETTERS
-	public int getAnno() {
+	public int getAnno()
+	{
 		return anno;
 	}
 
-	public void setAnno(int anno) {
+	public void setAnno(int anno) 
+	{
 		this.anno = anno;
 	}
 
-	public int getN_settimana() {
+	public int getN_settimana() 
+	{
 		return n_settimana;
 	}
 
-	public void setN_settimana(int n_settimana) {
+	public void setN_settimana(int n_settimana) 
+	{
 		this.n_settimana = n_settimana;
 	}
 
-	public double[] getDati_giornalieri() {
+	public double[] getDati_giornalieri() 
+	{
 		return dati_giornalieri;
 	}
 
-	public void setDati_giornalieri(double[] dati_giornalieri) {
+	public void setDati_giornalieri(double[] dati_giornalieri) 
+	{
 		this.dati_giornalieri = dati_giornalieri;
 	}
 }
