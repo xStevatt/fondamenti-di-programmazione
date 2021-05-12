@@ -5,5 +5,6 @@ public class PolveriSottiliMain
 	public static void main(String[] Args)
 	{
 		GestoreSettimane gestore = new GestoreSettimane(); 
+		gestore.mostraMenu();
 	}
 }

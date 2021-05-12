@@ -164,4 +164,10 @@ public class InputDati
 		input_scanner.nextLine();
 		return intero; 
 	}	
+	
+	public static double inputDouble(String messaggio_richiesto)
+	{
+		double input = input_scanner.nextDouble(); 
+		return input; 
+	}
 }
