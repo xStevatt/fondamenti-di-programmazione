@@ -29,7 +29,7 @@ public class Settimana
 		
 		for(int i = 0; i < dati_giornalieri.length; i++)
 		{
-			dati_giornalieri[i] = InputDati.inputDouble("Inserisci i dati per il giorno " + i + 1 + " della settimana: "); 
+			dati_giornalieri[i] = InputDati.inputDouble("Inserisci i dati per il giorno " + (i + 1) + " della settimana: "); 
 		}
 	}
 

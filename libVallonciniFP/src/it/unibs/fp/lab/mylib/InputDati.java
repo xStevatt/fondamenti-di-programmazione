@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class InputDati 
 {
-	private static final String IL_NUMERO_INSERITO_NON_È_UN_INTERO_RIPROVARE = "Il numero inserito non è un intero! Riprovare: ";
+	private static final String FROMATO_NON_CORRETTO = "Il numero inserito non è nel formato richiesto! Riprovare: ";
 	private static final String HAI_SCELTO_UNA_POSSIBILITÀ_NON_VALIDA_RIPROVARE = "Hai scelto una possibilità non valida! Riprovare: ";
 	private static final String INSERIMENTO_VUOTO_RIPROVARE = "Inserimento vuoto! Riprovare: ";
 	
@@ -102,7 +102,7 @@ public class InputDati
 			}
 			catch (java.util.InputMismatchException e) 
 			{
-				System.out.print(IL_NUMERO_INSERITO_NON_È_UN_INTERO_RIPROVARE);
+				System.out.print(FROMATO_NON_CORRETTO);
 				String stringa_catch = input_scanner.next();
 			}
 		}
@@ -142,7 +142,7 @@ public class InputDati
 			}
 			catch (java.util.InputMismatchException e) 
 			{
-				System.out.print(IL_NUMERO_INSERITO_NON_È_UN_INTERO_RIPROVARE);
+				System.out.print(FROMATO_NON_CORRETTO);
 				String stringa_catch = input_scanner.next();
 			}
 			
@@ -165,9 +165,27 @@ public class InputDati
 		return intero; 
 	}	
 	
-	public static double inputDouble(String messaggio_richiesto)
+	public static double inputDouble(String messaggio_richiesta)
 	{
-		double input = input_scanner.nextDouble(); 
+		double input = 0.0; 
+		boolean isValid = false; 
+		
+		System.out.print(messaggio_richiesta);
+		do
+		{
+			try
+			{
+				input = input_scanner.nextDouble(); 
+				isValid = true; 
+			}
+			catch(java.util.InputMismatchException e)
+			{
+				System.out.print(FROMATO_NON_CORRETTO);
+				String stringa_catch = input_scanner.next();
+			}
+		}
+		while(!isValid); 
+		
 		return input; 
 	}
 }
