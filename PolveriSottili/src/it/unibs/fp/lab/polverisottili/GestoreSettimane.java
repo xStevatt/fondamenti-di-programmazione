@@ -3,16 +3,25 @@ package it.unibs.fp.lab.polverisottili;
 import java.util.ArrayList;
 import it.unibs.fp.lab.mylib.GenerateMenu;
 
+/**
+ * Classe per mostrare a schermo il menu di scelta
+ * @author Stefano
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
+
 public class GestoreSettimane 
 {
-	private static final String STAMPA_VALORE_MASSIMO = "Il valore massimo vale: ";
-	private static final String STAMPA_VALORE_MEDIA = "La media vale: ";
-	private static final String VAI_A_CAPO = "\n";
-	private static final String UNEXPECTED_VALUE = "Unexpected value: ";
 	private static final String SCELTA_4 = "Visualizza i dati di tutte le settimane inserite";
 	private static final String SCELTA_3 = "Aggiungi una settimana (senza considerare le precedenti)";
 	private static final String SCELTA_2 = "Visualizza dati delle settimane consecutive inserite";
 	private static final String SCELTA_1 = "Aggiungi una settimana (verranno conisderati i dati anche delle settimane precedenti)";
+		
+	private static final String STAMPA_VALORE_MASSIMO = "Massimo: ";
+	private static final String STAMPA_VALORE_MEDIA = "Media: ";
+	private static final String VISUALIZZATA_DATI_SETTIMANA = "Numero settimana: ";
+	private static final String VAI_A_CAPO = "\n";
+	private static final String UNEXPECTED_VALUE = "Unexpected value: ";
+	
 	private static final String MESSAGGIO_CHIUSURA = "\n\nGrazie per aver usato Polveri Sottili!";
 	private static final String MESSAGGIO_ANALISI_DEI_DATI_RACCOLTI = "Analisi dei dati raccolti: ";
 	private static final String AVVISO_DATI_NELLA_NORMA = "Dati nella norma. Respirate a pieni polmoni!";
@@ -27,13 +36,6 @@ public class GestoreSettimane
 		lista_settimane = new ArrayList<Settimana>();
 	}
 
-	public Settimana creaSettimana() 
-	{
-		Settimana settimana = null;
-
-		return settimana;
-	}
-
 	public void mostraMenu() 
 	{
 		String[] scelte = { SCELTA_1,
@@ -44,9 +46,10 @@ public class GestoreSettimane
 		GenerateMenu menu = new GenerateMenu("Polveri Sottili", scelte);
 
 		int scelta = -1;
-
+		
 		do 
 		{
+			System.out.println(VAI_A_CAPO);
 			scelta = menu.mostraMenu();
 			ArrayList<Settimana> settimana_list_temp = new ArrayList<Settimana>();
 			Settimana settimana = null; 
@@ -71,6 +74,7 @@ public class GestoreSettimane
 				settimana_list_temp.clear();
 				settimana = new Settimana();
 				calcolaMassimoMedia(settimana.media_dati(), settimana.trovaMassimo());
+				stampaDati(settimana.getAnno(), settimana.getN_settimana(), scelta, scelta);
 				lista_settimane.add(settimana); 
 				break; 
 			case 4: 
@@ -124,5 +128,13 @@ public class GestoreSettimane
 			System.out.println(media + " " + max);
 		}
 		System.out.println(VAI_A_CAPO);
+	}
+	
+	public void stampaDati(int anno, int numero_settimana, double media, double max)
+	{
+		System.out.println("Anno: " + anno);
+		System.out.println(VISUALIZZATA_DATI_SETTIMANA + numero_settimana);
+		System.out.println(STAMPA_VALORE_MEDIA + media);
+		System.out.println(STAMPA_VALORE_MASSIMO + max);
 	}
 }

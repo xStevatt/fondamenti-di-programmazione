@@ -1,6 +1,12 @@
 package it.unibs.fp.lab.polverisottili;
 import it.unibs.fp.lab.mylib.InputDati;
 
+/**
+ * Classe per mostrare a schermo il menu di scelta
+ * @author Stefano
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
+
 public class Settimana 
 {
 	private static final int GIORNI_SETTIMANA = 7;
