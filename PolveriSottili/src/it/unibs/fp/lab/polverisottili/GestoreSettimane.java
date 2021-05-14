@@ -18,9 +18,7 @@ public class GestoreSettimane
 		
 	private static final String STAMPA_VALORE_MASSIMO = "Massimo: ";
 	private static final String STAMPA_VALORE_MEDIA = "Media: ";
-	private static final String VISUALIZZATA_DATI_SETTIMANA = "Numero settimana: ";
 	private static final String VAI_A_CAPO = "\n";
-	private static final String UNEXPECTED_VALUE = "Unexpected value: ";
 	
 	private static final String MESSAGGIO_CHIUSURA = "\n\nGrazie per aver usato Polveri Sottili!";
 	private static final String MESSAGGIO_ANALISI_DEI_DATI_RACCOLTI = "Analisi dei dati raccolti: ";
@@ -36,12 +34,12 @@ public class GestoreSettimane
 		lista_settimane = new ArrayList<Settimana>();
 	}
 
+	/**
+	 * 
+	 */
 	public void mostraMenu() 
 	{
-		String[] scelte = { SCELTA_1,
-							SCELTA_2,
-							SCELTA_3, 
-							SCELTA_4 };
+		String[] scelte = { SCELTA_1, SCELTA_2, SCELTA_3, SCELTA_4 };
 
 		GenerateMenu menu = new GenerateMenu("Polveri Sottili", scelte);
 
@@ -53,7 +51,6 @@ public class GestoreSettimane
 			scelta = menu.mostraMenu();
 			ArrayList<Settimana> settimana_list_temp = new ArrayList<Settimana>();
 			Settimana settimana = null; 
-			
 			
 			switch (scelta) 
 			{
@@ -68,25 +65,24 @@ public class GestoreSettimane
 				break;
 			case 2:
 				calcolaInfoSettimaneTotali(settimana_list_temp);
-				settimana_list_temp.clear();
 				break;
 			case 3: 
 				settimana_list_temp.clear();
 				settimana = new Settimana();
 				calcolaMassimoMedia(settimana.media_dati(), settimana.trovaMassimo());
-				stampaDati(settimana.getAnno(), settimana.getN_settimana(), scelta, scelta);
 				lista_settimane.add(settimana); 
 				break; 
 			case 4: 
 				calcolaInfoSettimaneTotali(lista_settimane);
 				break; 
-			default:
-				throw new IllegalArgumentException(UNEXPECTED_VALUE + scelta);
 			}
 		} 
 		while (scelta != 0);
 	}
 	
+	/**
+	 * 
+	 */
 	public void calcolaInfoSettimaneTotali(ArrayList<Settimana> settimane)
 	{
 		double somma_pol_sottili = 0.0; 
@@ -98,16 +94,18 @@ public class GestoreSettimane
 			somma_pol_sottili += settimane.get(i).somma_dati(); 
 		}
 		
-		media = somma_pol_sottili / GIORNI_SETTIMANA * settimane.size(); 
+		media = somma_pol_sottili / (GIORNI_SETTIMANA * settimane.size()); 
 		
 		for(int i = 0; i < settimane.size(); i++)
 		{
 			max = Math.max(max, settimane.get(i).trovaMassimo()); 
-			System.out.println(max);
 		}
 		calcolaMassimoMedia(media, max);
 	}
 	
+	/**
+	 * 
+	 */
 	public void calcolaMassimoMedia(double media, double max)
 	{
 		System.out.println(MESSAGGIO_ANALISI_DEI_DATI_RACCOLTI);
@@ -127,13 +125,12 @@ public class GestoreSettimane
 			System.out.println(AVVISO_DATI_NELLA_NORMA);
 			System.out.println(media + " " + max);
 		}
-		System.out.println(VAI_A_CAPO);
+		System.out.print(VAI_A_CAPO);
+		stampaDati(media, max);
 	}
 	
-	public void stampaDati(int anno, int numero_settimana, double media, double max)
+	public void stampaDati(double media, double max)
 	{
-		System.out.println("Anno: " + anno);
-		System.out.println(VISUALIZZATA_DATI_SETTIMANA + numero_settimana);
 		System.out.println(STAMPA_VALORE_MEDIA + media);
 		System.out.println(STAMPA_VALORE_MASSIMO + max);
 	}

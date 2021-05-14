@@ -2,7 +2,7 @@ package it.unibs.fp.lab.polverisottili;
 import it.unibs.fp.lab.mylib.InputDati;
 
 /**
- * Classe per mostrare a schermo il menu di scelta
+ * Classe rappresentante il 
  * @author Stefano
  * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
  */

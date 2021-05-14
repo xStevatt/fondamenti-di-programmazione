@@ -1,7 +1,7 @@
 package it.unibs.fp.lab.polverisottili;
 
 /**
- * Classe per mostrare a schermo il menu di scelta
+ * Classe main
  * @author Stefano
  * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
  */

@@ -7,6 +7,7 @@ package it.unibs.fp.lab.mylib;
  */
 public class GenerateMenu 
 {
+	private static final String ESCI_DAL_PROGRAMMA = "0 - ESCI DAL PROGRAMMA";
 	private static final String SPAZIO_VUOTO_SINGOLO = " ";
 	private static final String CORNICE = "------------";
 	private static final String VAI_A_CAPO = "\n";
@@ -31,7 +32,7 @@ public class GenerateMenu
 	
 	public void stampaScelte(int lunghezza_intestazione)
 	{
-		System.out.println("0 - ESCI DAL PROGRAMMA");
+		System.out.println(ESCI_DAL_PROGRAMMA);
 		for(int i = 0; i < scelte.length; i++)
 		{
 			System.out.println(i + 1 + " - " + scelte[i]);
