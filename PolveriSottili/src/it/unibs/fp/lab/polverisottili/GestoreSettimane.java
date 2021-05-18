@@ -12,6 +12,7 @@ import it.unibs.fp.lab.mylib.InputDati;
 
 public class GestoreSettimane 
 {
+	private static final String NESSUN_ELEMENTO_INSERITO = "Nessun elemento inserito";
 	// COSTANTI STRINGHE
 	private static final String TITOLO_MENU = "Polveri Sottili";
 	private static final String MESSAGGIO_NUMERO_DELLA_SETTIMANA_CORRENTE = "Inserisci il numero della settimana corrente: ";
@@ -76,7 +77,7 @@ public class GestoreSettimane
 				if(settimana_list_temp.size() > 0)
 					calcolaInfoSettimaneTotali(settimana_list_temp);
 				else
-					System.out.println("Nessun elemento inserito");
+					System.out.println(NESSUN_ELEMENTO_INSERITO);
 				break;
 			case 3:		// Aggiunge una nuova settimana senza considerare quelle precedenti
 				settimana_list_temp.clear();
