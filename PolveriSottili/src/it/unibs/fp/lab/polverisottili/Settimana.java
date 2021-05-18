@@ -2,8 +2,8 @@ package it.unibs.fp.lab.polverisottili;
 import it.unibs.fp.lab.mylib.InputDati;
 
 /**
- * Classe rappresentante il 
- * @author Stefano
+ * Classe per mostrare a schermo il menu di scelta
+ * @author Stefano Valloncini
  * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
  */
 
@@ -14,29 +14,12 @@ public class Settimana
 	private int anno; 
 	private int n_settimana;
 	private double dati_giornalieri[]; 
-	
-	public Settimana()
-	{
-		creaSettimana(); 
-	}
-	
+		
 	public Settimana(int anno, int n_settimana, double dati_giornalieri[])
 	{
 		this.anno = anno; 
 		this.n_settimana = n_settimana; 
 		this.dati_giornalieri = dati_giornalieri; 
-	}
-	
-	public void creaSettimana()
-	{
-		anno = InputDati.inputInteger("Inserisci l'anno della settimana corrente: "); 
-		n_settimana = InputDati.inputInteger("Inserisci il numero della settimana corrente: ", 1, 53); 
-		dati_giornalieri = new double[GIORNI_SETTIMANA]; 
-		
-		for(int i = 0; i < dati_giornalieri.length; i++)
-		{
-			dati_giornalieri[i] = InputDati.inputDouble("Inserisci i dati per il giorno " + (i + 1) + " della settimana: "); 
-		}
 	}
 
 	public double somma_dati()
