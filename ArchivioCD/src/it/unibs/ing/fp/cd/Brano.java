@@ -1,5 +1,10 @@
 package it.unibs.ing.fp.cd;
 
+/**
+ * Classe che rappresenta un brano musicale.
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public class Brano 
 {
 	private String titolo; 

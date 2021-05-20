@@ -2,6 +2,11 @@ package it.unibs.ing.fp.cd;
 
 import java.util.ArrayList; 
 
+/**
+ * Classe che gestisce un archivio di CD. 
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public class ArchivioCd 
 {
 	private static final String ERRORE_BRANO_NON_TROVATO = "ERRORE! - Brano non trovato!";
@@ -27,17 +32,19 @@ public class ArchivioCd
 		}
 	}
 	
-	public void eliminaCd(String titolo)
+	public boolean eliminaCd(String titolo)
 	{
 		int index = cercaBranoTitolo(titolo);
 		
 		if(index != -1)
 		{
 			lista_CD.remove(index); 
+			return true; 
 		}
 		else 
 		{
 			System.out.println(ERRORE_BRANO_NON_TROVATO);
+			return false; 
 		}
 	}
 	
@@ -64,5 +71,15 @@ public class ArchivioCd
 	public int getNumeroCd()
 	{
 		return lista_CD.size(); 
+	}
+
+	public ArrayList<Cd> getLista_CD() 
+	{
+		return lista_CD;
+	}
+
+	public void setLista_CD(ArrayList<Cd> lista_CD) 
+	{
+		this.lista_CD = lista_CD;
 	}
 }

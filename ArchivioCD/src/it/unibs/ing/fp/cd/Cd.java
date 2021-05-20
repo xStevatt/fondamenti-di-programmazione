@@ -3,6 +3,11 @@ package it.unibs.ing.fp.cd;
 import java.util.ArrayList;
 import it.unibs.ing.fp.mylib.*;
 
+/**
+ * Classe che rappresenta un CD, contente delle canzoni
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public class Cd 
 {
 	private String autore; 
@@ -19,6 +24,44 @@ public class Cd
 	public void aggiungiBrano(Brano brano)
 	{
 		lista_brani.add(brano); 
+	}
+	
+	public boolean eliminaBrano(String titolo)
+	{
+		int index = cercaBranoTitolo(titolo); 
+		if(contiene(titolo))
+		{
+			lista_brani.remove(index); 
+			return true; 
+		}
+		else
+		{
+			return false; 
+		}
+	}
+	
+	public boolean contiene(String titolo)
+	{
+		int index = cercaBranoTitolo(titolo); 
+		
+		if(index != -1)
+		{
+			return true;
+		}
+		else
+		{
+			return false; 
+		}
+	}
+	
+	public int cercaBranoTitolo(String titolo)
+	{
+		for(int i = 0; i < lista_brani.size(); i++)
+		{
+			if(titolo.equalsIgnoreCase(lista_brani.get(i).getTitolo()))
+				return i; 
+		}
+		return -1; 
 	}
 	
 	public Brano branoCasuale()

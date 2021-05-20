@@ -33,4 +33,16 @@ public class ArchivioCDTest
 		
 		assertEquals(3, archivio.getNumeroCd());
 	}
+	
+	@Test
+	public void testAggiungiCDNomeUguale()
+	{
+		ArchivioCd archivio = new ArchivioCd(); 
+		archivio.aggiungiCd(new Cd("Nome CD 1", "Fabri Fibra"));
+		archivio.aggiungiCd(new Cd("Nome CD 1", "Fabri Fibra"));
+		archivio.aggiungiCd(new Cd("Nome CD 1", "Fabri Fibra"));
+		archivio.aggiungiCd(new Cd("Nome CD 1", "Fabri Fibra"));
+		
+		assertEquals(1, archivio.getNumeroCd());
+	}
 }
