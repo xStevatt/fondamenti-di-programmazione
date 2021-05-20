@@ -18,4 +18,19 @@ public class Brano
 	{
 		return titolo + " durata: " + durata_minuti + ":" + durata_secondi; 
 	}
+	
+	public String getTitolo()
+	{
+		return titolo; 
+	}
+	
+	public int getDurata_minuti()
+	{
+		return durata_minuti; 
+	}
+	
+	public int getDurata_secondi()
+	{
+		return durata_secondi; 
+	}
 }

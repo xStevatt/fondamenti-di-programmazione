@@ -1,5 +1,6 @@
 package it.unibs.ing.fp.mylib; 
 import java.util.Scanner; 
+import java.util.ArrayList;
 
 /**
  * Classe per l'input di dati
@@ -65,7 +66,7 @@ public class InputDati
 				{
 					if(string_input.equalsIgnoreCase(string_asset[i]))
 					{
-						isValid = !isValid; 
+						isValid = true; 
 						break; 
 					}
 				}
@@ -81,6 +82,49 @@ public class InputDati
 		
 		return string_input; 
 	}	
+	
+	/**
+	 * METODO PER L'INSERIMENTO DI UNA STRINGA CON IL REQUISITO DI APPARTENERE AD UN "ASSET" (cioè un insieme di valori possibili). 
+	 * @param messaggio_richiesta - Messaggio di richiesta dell'input all'utente
+	 * @param string_asset - ArrayList con all'interno gli elementi che possono essere inseriti dall'utente 
+	 * @return viene ritornata la stringa inserita in input dall'utente dopo aver verificato che essa non sia vuota e sia presente nell'array
+	 */
+	public static String inputString(String messaggio_richiesta, ArrayList<String> string_asset)
+	{
+		String string_input = ""; 
+		boolean isValid = false; 
+		
+		System.out.print(messaggio_richiesta);
+		do
+		{
+			string_input = input_scanner.next().trim(); 
+			
+			if(string_input.length() == 0)
+			{
+				System.out.print(INSERIMENTO_VUOTO_RIPROVARE);
+			}
+			else
+			{
+				for(int i = 0; i < string_asset.size(); i++)
+				{
+					if(string_input.equalsIgnoreCase(string_asset.get(i)))
+					{
+						isValid = true; 
+						break; 
+					}
+				}
+				if(isValid)
+					return string_input; 
+				else
+					System.out.print(HAI_SCELTO_UNA_POSSIBILITÀ_NON_VALIDA_RIPROVARE);
+			}
+		}
+		while(string_input.length() == 0 || !isValid); 
+		
+		input_scanner.nextLine(); // pulisce la stringa
+		
+		return string_input; 
+	}
 	
 	/**
 	 * METODO PER L'INSERIMENTO DI UN INTERO QUALUNQUE
