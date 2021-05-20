@@ -1,4 +1,4 @@
-package it.unibs.fp.lab.mylib; 
+package it.unibs.ing.fp.mylib; 
 import java.util.Scanner; 
 
 /**
