@@ -72,8 +72,8 @@ public class CDMain
 				}
 				break; 
 			case 3: 
-				String titolo_da_eliminare = InputDati.inputString("Inserisci il titolo da eliminare -> "); 
-				if(archivio.eliminaCd(titolo_da_eliminare))
+				String titolo_cd_da_eliminare = InputDati.inputString("Inserire il titolo del CD da eliminare -> "); 
+				if(archivio.eliminaCd(titolo_cd_da_eliminare))
 				{
 					System.out.println("AVVISO - Brano eliminato correttamente.");
 				}
@@ -83,6 +83,10 @@ public class CDMain
 				}
 				break; 
 			case 4: 
+				System.out.println("Inserire il titolo del brano che vuoi eliminare -> ");
+				String titolo_brano_da_eliminare = InputDati.inputString("Inserire il titolo del brano da eliminare -> ");
+				
+				if(archivio.)
 				break; 
 			case 5: 
 				break; 
