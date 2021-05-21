@@ -57,7 +57,7 @@ public class CDMain
 				{
 					try
 					{
-						index = archivio.cercaBranoTitolo(titolo); 
+						index = archivio.cercaTitoloCD(titolo); 
 						archivio.getLista_CD().get(index); 
 						System.out.println("AVVISO - Brano aggiunto correttamente.");
 					}
@@ -86,7 +86,6 @@ public class CDMain
 				System.out.println("Inserire il titolo del brano che vuoi eliminare -> ");
 				String titolo_brano_da_eliminare = InputDati.inputString("Inserire il titolo del brano da eliminare -> ");
 				
-				if(archivio.)
 				break; 
 			case 5: 
 				break; 

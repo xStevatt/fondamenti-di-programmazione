@@ -34,7 +34,7 @@ public class ArchivioCd
 	
 	public boolean eliminaCd(String titolo)
 	{
-		int index = cercaBranoTitolo(titolo);
+		int index = cercaTitoloCD(titolo);
 		
 		if(index != -1)
 		{
@@ -50,7 +50,7 @@ public class ArchivioCd
 	
 	public boolean contiene(String titolo)
 	{
-		int index = cercaBranoTitolo(titolo); 
+		int index = cercaTitoloCD(titolo); 
 		
 		if(index != -1)
 			return true; 
@@ -58,7 +58,7 @@ public class ArchivioCd
 			return false; 
 	}
 	
-	public int cercaBranoTitolo(String titolo)
+	public int cercaTitoloCD(String titolo)
 	{
 		for(int i = 0; i < lista_CD.size(); i++)
 		{
