@@ -40,75 +40,31 @@ public class ArchivioCDMenu
 			switch (scelta) 
 			{
 			case 1: 
-				// Aggiunge un CD all'archivio
-				Cd cd = creaCD(); 
-				archivio.aggiungiCd(cd);
+				aggiungiCDArchivio(archivio);
 				break; 
 			case 2: 
-				// Aggiunge un brano ad un CD scelto da tastiera dall'utente
-				String titolo = InputDati.inputString("Inserisci il titolo del cd a cui vuoi aggiungere un brano -> "); 
-				
-				int index = -1; 
-				
-				if(index != -1)
-				{
-					try
-					{
-						index = archivio.cercaTitoloCD(titolo); 
-						archivio.getLista_CD().get(index); 
-						System.out.println("AVVISO - Brano aggiunto correttamente.");
-					}
-					catch(Exception e)
-					{
-						System.out.println("ERRORE - Impossibile aggiungere il brano: Errore");
-					}
-				}
-				else
-				{
-					System.out.println("ERRORE - Impossibile aggiungere il brano: CD inesistente.");
-				}
+				aggiungiBranoToCD(archivio);
 				break; 
 			case 3: 
-				String titolo_cd_da_eliminare = InputDati.inputString("Inserire il titolo del CD da eliminare -> "); 
-				if(archivio.eliminaCd(titolo_cd_da_eliminare))
-				{
-					System.out.println("AVVISO - Brano eliminato correttamente.");
-				}
-				else
-				{
-					System.out.println("ERRORE - Impossibile eliminare il brano.");
-				}
+				eliminaCD(archivio);
 				break; 
 			case 4: 
-				System.out.println("Inserire il titolo del brano che vuoi eliminare -> ");
-				String titolo_brano_da_eliminare = InputDati.inputString("Inserire il titolo del brano da eliminare -> ");
-				
-				for(int i = 0; i < archivio.getLista_CD().size(); i++)
-				{
-					
-				}
+				eliminaBrano(archivio);
 				break; 
-			case 5: 
+			case 5:
+				visualizzaContenutoCD();
 				break; 
 			case 6: 
+				mostraUnCdCasuale(); 
 				break; 
 			case 7: 
-				if(archivio.getNumeroCd() > 0)
-				{
-					Cd cd_rand = archivio.getLista_CD().get(RandomNumbers.getRandomInteger(0, archivio.getNumeroCd())); 				
-					Brano brano_rand = cd_rand.branoCasuale(); 
-					visualizzaInfoBrano(brano_rand, cd_rand);
-				}
-				else
-				{
-					System.out.println(ERRORE_NON_È_PRESENTE_ALCUN_CD_NELL_ARCHIVIO);
-				}
+				mostraUnBranoCasuale();
 				break; 
 			case 8: 
-				archivio.toString(); 
+				mostraContenutoTuttiCd(); 
 				break; 
 			case 9: 
-				
+				estraiListaCasualeBrani(); 
 				break; 
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + scelta);
@@ -117,12 +73,89 @@ public class ArchivioCDMenu
 		}
 		while(scelta != 0); 
 	}
+
+	private static void estraiListaCasualeBrani()
+	{
+		
+	}
+	
+	private static void mostraContenutoTuttiCd()
+	{
+		
+	}
+	
+	private static void mostraUnBranoCasuale()
+	{
+		
+	}
+	
+	private static void mostraUnCdCasuale()
+	{
+		
+	}
+	
+	private static void visualizzaContenutoCD()
+	{
+		
+	}
+	
+	private static void eliminaBrano(ArchivioCd archivio) {
+		System.out.println("Inserire il titolo del brano che vuoi eliminare -> ");
+		String titolo_brano_da_eliminare = InputDati.inputString("Inserire il titolo del brano da eliminare -> ");
+		
+		for(int i = 0; i < archivio.getLista_CD().size(); i++)
+		{
+			
+		}
+	}
+
+	private static void eliminaCD(ArchivioCd archivio) {
+		String titolo_cd_da_eliminare = InputDati.inputString("Inserire il titolo del CD da eliminare -> "); 
+		if(archivio.eliminaCd(titolo_cd_da_eliminare))
+		{
+			System.out.println("AVVISO - Brano eliminato correttamente.");
+		}
+		else
+		{
+			System.out.println("ERRORE - Impossibile eliminare il brano.");
+		}
+	}
+
+	private static void aggiungiBranoToCD(ArchivioCd archivio) {
+		String titolo = InputDati.inputString("Inserisci il titolo del cd a cui vuoi aggiungere un brano -> "); 
+		
+		int index = -1; 
+		
+		if(index != -1)
+		{
+			try
+			{
+				index = archivio.cercaTitoloCD(titolo); 
+				archivio.getLista_CD().get(index); 
+				System.out.println("AVVISO - Brano aggiunto correttamente.");
+			}
+			catch(Exception e)
+			{
+				System.out.println("ERRORE - Impossibile aggiungere il brano: Errore");
+			}
+		}
+		else
+		{
+			System.out.println("ERRORE - Impossibile aggiungere il brano: CD inesistente.");
+		}
+	}
+
+	private static void aggiungiCDArchivio(ArchivioCd archivio) {
+		// Aggiunge un CD all'archivio
+		Cd cd = creaCD(); 
+		archivio.aggiungiCd(cd);
+	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public static Cd creaCD()
+	private static Cd creaCD()
 	{
 		String titolo = InputDati.inputString("Inserisci il titolo del CD -> "); 
 		String autore = InputDati.inputString("Inserisci l'autore del CD -> "); 
@@ -134,7 +167,7 @@ public class ArchivioCDMenu
 	 * 
 	 * @return
 	 */
-	public static Brano creaBrano()
+	private static Brano creaBrano()
 	{
 		String titolo = InputDati.inputString("Inserisci il titolo del brano -> "); 
 
@@ -158,17 +191,4 @@ public class ArchivioCDMenu
 		return new Brano(titolo, minuti, secondi); 
 	}
 	
-	/**
-	 * 
-	 * @param brano - è il brano le cui informazioni devono essere stampate a schermo
-	 * @param cd - è il cd le cui informazioni devono essere stampate a schermo
-	 */
-	public static void visualizzaInfoBrano(Brano brano, Cd cd)
-	{
-		// DA RIFARE CON TO STRING
-		System.out.println("BRANO ESTRATTO: " + brano.getTitolo());
-		System.out.println("CD: " + cd.getTitolo());
-		System.out.println("AUTORE: " + cd.getAutore());
-		System.out.println();
-	}
 }
