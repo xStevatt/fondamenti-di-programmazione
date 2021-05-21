@@ -68,6 +68,11 @@ public class ArchivioCd
 		return -1; 
 	}
 	
+	@Override
+	public String toString() {
+		return "ArchivioCd [lista_CD=" + lista_CD + "]";
+	}
+
 	public int getNumeroCd()
 	{
 		return lista_CD.size(); 
