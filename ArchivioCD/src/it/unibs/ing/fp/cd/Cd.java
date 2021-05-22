@@ -74,15 +74,27 @@ public class Cd
 		return this.titolo == titolo ? true : false; 
 	}
 	
+	public int getNumeroBrani()
+	{
+		return lista_brani.size(); 
+	}
+	
 	@Override
 	public String toString()
 	{
-		return titolo + " di " + autore + " brani: " + lista_brani.size();  
+		return titolo + " di " + autore + " brani: " + lista_brani;  
 	}
+	
+	// GETTERS AND SETTERS
 	
 	public String getAutore()
 	{
 		return autore; 
+	}
+	
+	public void setAutore(String autore)
+	{
+		this.autore = autore; 
 	}
 	
 	public String getTitolo()
@@ -90,8 +102,18 @@ public class Cd
 		return titolo; 
 	}
 	
+	public void setTitolo(String titolo)
+	{
+		this.titolo = titolo; 
+	}
+	
 	public ArrayList<Brano> getListaBrani()
 	{
 		return lista_brani; 
+	}
+	
+	public void setListaBrani(ArrayList<Brano> lista_brani)
+	{
+		this.lista_brani = lista_brani; 
 	}
 }

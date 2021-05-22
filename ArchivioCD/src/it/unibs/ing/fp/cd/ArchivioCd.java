@@ -1,6 +1,8 @@
 package it.unibs.ing.fp.cd;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
+
+import it.unibs.ing.fp.mylib.RandomNumbers; 
 
 /**
  * Classe che gestisce un archivio di CD. 
@@ -16,6 +18,11 @@ public class ArchivioCd
 	public ArchivioCd()
 	{
 		lista_CD = new ArrayList<Cd>(); 
+	}
+	
+	public Cd cdCasuale()
+	{
+		return 	lista_CD.get(RandomNumbers.getRandomInteger(0, lista_CD.size())); 
 	}
 	
 	public void aggiungiCd(Cd CD)
@@ -66,6 +73,11 @@ public class ArchivioCd
 				return i; 
 		}
 		return -1; 
+	}
+	
+	public String visualizzaContenutoCD(int index_elemento)
+	{
+		return lista_CD.get(index_elemento).toString();
 	}
 	
 	@Override

@@ -1,5 +1,7 @@
 package it.unibs.ing.fp.cd;
 
+import java.util.ArrayList;
+
 import it.unibs.ing.fp.mylib.InputDati;
 import it.unibs.ing.fp.mylib.MyMenu;
 import it.unibs.ing.fp.mylib.RandomNumbers;
@@ -22,16 +24,16 @@ public class ArchivioCDMenu
 	private static final String SCELTA_2 = "Aggiungi un brano ad un cd esistente";
 	private static final String SCELTA_1 = "Crea un nuovo CD";
 	
+	private static ArchivioCd archivio = new ArchivioCd(); 
+	
 	/**
 	 * Si occupa di gestire la visualizzazione del menu
 	 */
 	public static void mostraMenu()
 	{
 		int scelta = 0; 
-		String[] scelte = {SCELTA_1, SCELTA_2, SCELTA_3, SCELTA_4, SCELTA_5, SCELTA_6, SCELTA_7, SCELTA_8}; 
+		String[] scelte = {SCELTA_1, SCELTA_2, SCELTA_3, SCELTA_4, SCELTA_5, SCELTA_6, SCELTA_7, SCELTA_8, SCELTA_9}; 
 		MyMenu menu = new MyMenu("Archivio CD", scelte); 
-		
-		ArchivioCd archivio = new ArchivioCd(); 
 		
 		do
 		{
@@ -40,16 +42,16 @@ public class ArchivioCDMenu
 			switch (scelta) 
 			{
 			case 1: 
-				aggiungiCDArchivio(archivio);
+				aggiungiCDArchivio();
 				break; 
 			case 2: 
-				aggiungiBranoToCD(archivio);
+				aggiungiBranoToCD();
 				break; 
 			case 3: 
-				eliminaCD(archivio);
+				eliminaCD();
 				break; 
 			case 4: 
-				eliminaBrano(archivio);
+				eliminaBrano();
 				break; 
 			case 5:
 				visualizzaContenutoCD();
@@ -74,32 +76,60 @@ public class ArchivioCDMenu
 		while(scelta != 0); 
 	}
 
+	/**
+	 * estraiListaCasualeBrani mostra a schermo un numero casuale di brani estratti da CD casuali
+	 * @param archivio - l'archivio dei CD dai quali si devono estrarre brani casuali
+	 */
 	private static void estraiListaCasualeBrani()
 	{
-		
+		int numbers_amount = RandomNumbers.getRandomInteger(1, 10); 
+		for(int i = 0; i < numbers_amount; i++)
+		{
+			Cd cd_estratto = archivio.cdCasuale(); 
+			Brano brano_estratto = cd_estratto.branoCasuale(); 
+			System.out.println(brano_estratto.toString());
+		}
 	}
 	
 	private static void mostraContenutoTuttiCd()
 	{
-		
+		for(int i = 0; i < archivio.getNumeroCd(); i++)
+		{
+			System.out.println(archivio.visualizzaContenutoCD(i));
+		}
 	}
 	
 	private static void mostraUnBranoCasuale()
 	{
+		Cd cd_estratto = archivio.cdCasuale(); 
 		
+		Brano brano_estratto = cd_estratto.branoCasuale(); 
+		
+		System.out.println(brano_estratto.toString());
 	}
 	
 	private static void mostraUnCdCasuale()
 	{
-		
+		Cd cd_estratto = archivio.cdCasuale(); 
+		System.out.println(cd_estratto.toString());
 	}
 	
 	private static void visualizzaContenutoCD()
 	{
+		System.out.println("CD disponibili: \n" + archivio.toString());
+		String titolo_cd = InputDati.inputString("Inserisci il titolo del CD che vuoi visualizzare -> "); 
 		
+		if(archivio.contiene(titolo_cd))
+		{
+			System.out.println(archivio.visualizzaContenutoCD(archivio.cercaTitoloCD(titolo_cd)));
+		}
+		else
+		{
+			System.out.println("ERRORE! - Non è presente un CD con il nome inserito.");
+		}
 	}
 	
-	private static void eliminaBrano(ArchivioCd archivio) {
+	private static void eliminaBrano() {
 		System.out.println("Inserire il titolo del brano che vuoi eliminare -> ");
 		String titolo_brano_da_eliminare = InputDati.inputString("Inserire il titolo del brano da eliminare -> ");
 		
@@ -109,7 +139,7 @@ public class ArchivioCDMenu
 		}
 	}
 
-	private static void eliminaCD(ArchivioCd archivio) {
+	private static void eliminaCD() {
 		String titolo_cd_da_eliminare = InputDati.inputString("Inserire il titolo del CD da eliminare -> "); 
 		if(archivio.eliminaCd(titolo_cd_da_eliminare))
 		{
@@ -121,7 +151,7 @@ public class ArchivioCDMenu
 		}
 	}
 
-	private static void aggiungiBranoToCD(ArchivioCd archivio) {
+	private static void aggiungiBranoToCD() {
 		String titolo = InputDati.inputString("Inserisci il titolo del cd a cui vuoi aggiungere un brano -> "); 
 		
 		int index = -1; 
@@ -131,7 +161,8 @@ public class ArchivioCDMenu
 			try
 			{
 				index = archivio.cercaTitoloCD(titolo); 
-				archivio.getLista_CD().get(index); 
+				Brano brano = creaBrano(); 
+				archivio.getLista_CD().get(index).aggiungiBrano(brano);
 				System.out.println("AVVISO - Brano aggiunto correttamente.");
 			}
 			catch(Exception e)
@@ -145,7 +176,7 @@ public class ArchivioCDMenu
 		}
 	}
 
-	private static void aggiungiCDArchivio(ArchivioCd archivio) {
+	private static void aggiungiCDArchivio() {
 		// Aggiunge un CD all'archivio
 		Cd cd = creaCD(); 
 		archivio.aggiungiCd(cd);
@@ -181,7 +212,7 @@ public class ArchivioCDMenu
 			minuti = Integer.parseInt(durata.substring(0, 2)); 
 			secondi = Integer.parseInt(durata.substring(3, 5)); 
 			
-			if(minuti < MAX_MINUTI|| secondi < MAX_SECONDI)
+			if(minuti < MAX_MINUTI || secondi < MAX_SECONDI)
 				isDurataValid = true; 
 			else 
 				System.out.println(ERRORE_INPUT_NON_VALIDO);
