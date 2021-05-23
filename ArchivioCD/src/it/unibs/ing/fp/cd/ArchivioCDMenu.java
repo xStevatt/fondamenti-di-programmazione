@@ -24,7 +24,7 @@ public class ArchivioCDMenu
 	private static final String SCELTA_2 = "Aggiungi un brano ad un cd esistente";
 	private static final String SCELTA_1 = "Crea un nuovo CD";
 	
-	private static ArchivioCd archivio = new ArchivioCd(); 
+	public static ArchivioCd archivio = new ArchivioCd(); 
 	
 	/**
 	 * Si occupa di gestire la visualizzazione del menu
@@ -154,13 +154,12 @@ public class ArchivioCDMenu
 	private static void aggiungiBranoToCD() {
 		String titolo = InputDati.inputString("Inserisci il titolo del cd a cui vuoi aggiungere un brano -> "); 
 		
-		int index = -1; 
+		int index = archivio.cercaTitoloCD(titolo); 
 		
 		if(index != -1)
 		{
 			try
 			{
-				index = archivio.cercaTitoloCD(titolo); 
 				Brano brano = creaBrano(); 
 				archivio.getLista_CD().get(index).aggiungiBrano(brano);
 				System.out.println("AVVISO - Brano aggiunto correttamente.");
@@ -176,15 +175,20 @@ public class ArchivioCDMenu
 		}
 	}
 
-	private static void aggiungiCDArchivio() {
+	/**
+	 * Aggiunge un CD all'archivio. Utilizza il metodo creaCd() e aggiunge il cd creato alla lista del cd dell'archivio.
+	 */
+	private static void aggiungiCDArchivio() 
+	{
 		// Aggiunge un CD all'archivio
 		Cd cd = creaCD(); 
 		archivio.aggiungiCd(cd);
+		System.out.println("AVVISO - " + cd.getTitolo() + " aggiunto correttamente");
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Richiesta in input dei dati di input per la creazione del CD
+	 * @return Cd - ritorna l'oggetto di tipo Cd che è stato creato
 	 */
 	private static Cd creaCD()
 	{
@@ -195,8 +199,8 @@ public class ArchivioCDMenu
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Avviene effettuata la richiesta in input dei dati di input per la creazione del CD
+	 * @return Brano - ritorna l'oggetto di tipo Brano che è stato creato
 	 */
 	private static Brano creaBrano()
 	{
