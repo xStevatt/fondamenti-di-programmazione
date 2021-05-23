@@ -21,7 +21,7 @@ public class Brano
 	@Override
 	public String toString()
 	{
-		return titolo + " durata: " + durata_minuti + ":" + durata_secondi; 
+		return titolo + " - durata: " + durata_minuti + ":" + durata_secondi; 
 	}
 	
 	public String getTitolo()

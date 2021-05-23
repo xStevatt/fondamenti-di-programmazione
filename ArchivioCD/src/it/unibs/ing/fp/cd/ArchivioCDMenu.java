@@ -68,8 +68,6 @@ public class ArchivioCDMenu
 			case 9: 
 				estraiListaCasualeBrani(); 
 				break; 
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + scelta);
 			}
 			System.out.println("\n");
 		}
@@ -82,38 +80,85 @@ public class ArchivioCDMenu
 	 */
 	private static void estraiListaCasualeBrani()
 	{
-		int numbers_amount = RandomNumbers.getRandomInteger(1, 10); 
-		for(int i = 0; i < numbers_amount; i++)
+		if(archivio.getNumeroCd() > 0)
 		{
-			Cd cd_estratto = archivio.cdCasuale(); 
-			Brano brano_estratto = cd_estratto.branoCasuale(); 
-			System.out.println(brano_estratto.toString());
+			try
+			{
+				int numbers_amount = RandomNumbers.getRandomInteger(1, archivio.getNumeroCd()); 
+				for(int i = 0; i < numbers_amount; i++)
+				{
+					Cd cd_estratto = archivio.cdCasuale(); 
+					Brano brano_estratto = cd_estratto.branoCasuale(); 
+					System.out.println(brano_estratto.toString());
+				}
+			}
+			catch(java.lang.IndexOutOfBoundsException e)
+			{
+				System.out.println("ERRORE - Nessun brano trovato.");
+			}
+		}
+		else
+		{
+			System.out.println("ERRORE - Nessun brano trovato.");
 		}
 	}
 	
+	/**
+	 * Il metodo mostra il contenuto di tutti i CD (mostra quindi il titolo, l'autore di ciascuno CD) ed infine ciascun brano
+	 */
 	private static void mostraContenutoTuttiCd()
 	{
-		for(int i = 0; i < archivio.getNumeroCd(); i++)
+		if(archivio.getNumeroCd() > 0)
 		{
-			System.out.println(archivio.visualizzaContenutoCD(i));
+			for(int i = 0; i < archivio.getNumeroCd(); i++)
+			{
+				System.out.println(archivio.visualizzaContenutoCD(i));
+			}
+		}
+		else
+		{
+			System.out.println("ERRORE - Nessun CD trovato.");
 		}
 	}
 	
+	/**
+	 * Mostra un brano casuale dalla lista. 
+	 */
 	private static void mostraUnBranoCasuale()
 	{
-		Cd cd_estratto = archivio.cdCasuale(); 
-		
-		Brano brano_estratto = cd_estratto.branoCasuale(); 
-		
-		System.out.println(brano_estratto.toString());
+		if(archivio.getNumeroCd() > 0)
+		{
+			try
+			{
+				Cd cd_estratto = archivio.cdCasuale(); 
+				
+				Brano brano_estratto = cd_estratto.branoCasuale(); 
+				
+				System.out.println(brano_estratto.toString());
+			}
+			catch (java.lang.IndexOutOfBoundsException e) 
+			{
+				System.out.println("ERRORE -  Nessun brano trovato.");
+			}
+		}
+		else
+		{
+			System.out.println("ERRORE -  Nessun brano trovato.");
+		}
 	}
 	
+	/**
+	 * Estra un CD casuale dalla lista dei CD e stampa i suoi attributi
+	 */
 	private static void mostraUnCdCasuale()
 	{
 		Cd cd_estratto = archivio.cdCasuale(); 
 		System.out.println(cd_estratto.toString());
 	}
 	
+	/**
+	 * Permette la visualizzazione di un CD. La ricerca del CD da stampare avviene attraverso la ricerca del titolo. 
+	 */
 	private static void visualizzaContenutoCD()
 	{
 		System.out.println("CD disponibili: \n" + archivio.toString());
@@ -129,7 +174,11 @@ public class ArchivioCDMenu
 		}
 	}
 	
-	private static void eliminaBrano() {
+	/**
+	 * Elimina un brano da eliminare dalla lista completa di tutti i brani (quindi senza selezionare prima un particolare CD). 
+	 */
+	private static void eliminaBrano() 
+	{
 		System.out.println("Inserire il titolo del brano che vuoi eliminare -> ");
 		String titolo_brano_da_eliminare = InputDati.inputString("Inserire il titolo del brano da eliminare -> ");
 		
@@ -139,9 +188,16 @@ public class ArchivioCDMenu
 		}
 	}
 
-	private static void eliminaCD() {
+	/**
+	 * Cancella un Cd dall'archivio. La ricerca viene effettuata attraverso il titolo del Cd da eliminare. 
+	 */
+	private static void eliminaCD() 
+	{
 		String titolo_cd_da_eliminare = InputDati.inputString("Inserire il titolo del CD da eliminare -> "); 
-		if(archivio.eliminaCd(titolo_cd_da_eliminare))
+		
+		boolean isDeletingSuccessful = archivio.eliminaCd(titolo_cd_da_eliminare); 
+		
+		if(isDeletingSuccessful)
 		{
 			System.out.println("AVVISO - Brano eliminato correttamente.");
 		}
@@ -151,6 +207,9 @@ public class ArchivioCDMenu
 		}
 	}
 
+	/**
+	 * Aggiunge un brano ad un particolare CD. Viene richiesto di inserire il titolo del CD in cui inserire il brano.
+	 */
 	private static void aggiungiBranoToCD() {
 		String titolo = InputDati.inputString("Inserisci il titolo del cd a cui vuoi aggiungere un brano -> "); 
 		
@@ -225,5 +284,4 @@ public class ArchivioCDMenu
 		
 		return new Brano(titolo, minuti, secondi); 
 	}
-	
 }
