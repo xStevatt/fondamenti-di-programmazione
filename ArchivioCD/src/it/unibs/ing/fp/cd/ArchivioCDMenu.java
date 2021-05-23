@@ -84,9 +84,13 @@ public class ArchivioCDMenu
 		{
 			try
 			{
-				int numbers_amount = RandomNumbers.getRandomInteger(1, archivio.getNumeroCd()); 
+				int numbers_amount = RandomNumbers.getRandomInteger(0, archivio.getNumeroCd()); 
+				
+				System.out.println("Brani estratti casualimente: ");
+				
 				for(int i = 0; i < numbers_amount; i++)
 				{
+					System.out.println("asdasdasdasd");
 					Cd cd_estratto = archivio.cdCasuale(); 
 					Brano brano_estratto = cd_estratto.branoCasuale(); 
 					System.out.println(brano_estratto.toString());
