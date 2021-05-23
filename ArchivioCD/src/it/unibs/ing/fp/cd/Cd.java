@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import it.unibs.ing.fp.mylib.*;
 
 /**
- * Classe che rappresenta un CD, contente delle canzoni
+ * Classe che rappresenta un CD, contente delle canzoni.
  * @author Stefano Valloncini
  * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
  */
@@ -21,11 +21,20 @@ public class Cd
 		lista_brani = new ArrayList<Brano>(); 
 	}
 	
+	/**
+	 * Metodo per l'aggiunta di un brano all'intero della lista di brani
+	 * @param brano - viene passato come parametro il brano da aggiungere
+	 */
 	public void aggiungiBrano(Brano brano)
 	{
 		lista_brani.add(brano); 
 	}
 	
+	/**
+	 * Metodo per eliminare un brano dalla lista di brani
+	 * @param titolo - il titolo del brano da eliminare viene passato come parametro al metodo
+	 * @return viene ritornato true se l'eliminazione è avvenuta con successo, altrimenti false.
+	 */
 	public boolean eliminaBrano(String titolo)
 	{
 		int index = cercaBranoTitolo(titolo); 
@@ -40,6 +49,11 @@ public class Cd
 		}
 	}
 	
+	/**
+	 * Metodo per verificare se il Cd contiene un particolare brano
+	 * @param titolo - il titolo del brano da verificare viene passato come parametro al metodo
+	 * @return viene ritornato true se il Cd contiene (nell'ArrayList) un brano con il titolo passato come parametro, altrimenti false
+	 */
 	public boolean contiene(String titolo)
 	{
 		int index = cercaBranoTitolo(titolo); 
@@ -54,6 +68,11 @@ public class Cd
 		}
 	}
 	
+	/**
+	 * Metodo per cercare un brano all'interno della lista di brani del CD
+	 * @param titolo - viene passato il titolo del brano da cercare
+	 * @return viene ritornato l'indice (la posizione) dove è stato trovato il brano che ha il titolo passato come parametro, altrimenti viene ritornato -1. 
+	 */
 	public int cercaBranoTitolo(String titolo)
 	{
 		for(int i = 0; i < lista_brani.size(); i++)
@@ -64,16 +83,29 @@ public class Cd
 		return -1; 
 	}
 	
+	/**
+	 * Metodo per l'estrazione di un brano casuale
+	 * @return viene ritornato il Brano estratto casualmente 
+	 */
 	public Brano branoCasuale()
 	{
 		return lista_brani.get(RandomNumbers.getRandomInteger(0, lista_brani.size())); 
 	}
 	
+	/**
+	 * Metodo per verificare se un particolare CD ha un particolare titolo passato come parametro
+	 * @param titolo - il titolo del brano viene passato come parametro
+	 * @return viene ritornato true se il titolo del brano e il titolo passato come parametro sono uguali, altrimenti false
+	 */
 	public boolean haTitolo(String titolo)
 	{
 		return this.titolo == titolo ? true : false; 
 	}
 	
+	/**
+	 * Metodo per ottenere il numero di brani all'intero della lista di brani
+	 * @return viene ritornato un int (intero) attraverso l'uso del metodo size()
+	 */
 	public int getNumeroBrani()
 	{
 		return lista_brani.size(); 
