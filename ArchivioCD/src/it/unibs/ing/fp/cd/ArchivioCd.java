@@ -25,17 +25,18 @@ public class ArchivioCd
 		return 	lista_CD.get(RandomNumbers.getRandomInteger(0, lista_CD.size())); 
 	}
 	
-	public void aggiungiCd(Cd CD)
+	public boolean aggiungiCd(Cd CD)
 	{
 		boolean isValid = !contiene(CD.getTitolo()); 
 		
 		if(isValid)
 		{
 			lista_CD.add(CD); 
+			return true; 
 		}
 		else 
 		{
-			System.out.println(ERRORE_TITOLO_GIÀ_ESISTENTE);
+			return false; 
 		}
 	}
 	

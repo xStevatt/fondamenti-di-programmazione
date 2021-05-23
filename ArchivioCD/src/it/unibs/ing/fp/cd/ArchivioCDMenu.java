@@ -138,7 +138,7 @@ public class ArchivioCDMenu
 			}
 			catch (java.lang.IndexOutOfBoundsException e) 
 			{
-				System.out.println("ERRORE -  Nessun brano trovato.");
+				System.out.println("ERRORE - Nessun brano trovato.");
 			}
 		}
 		else
@@ -152,8 +152,22 @@ public class ArchivioCDMenu
 	 */
 	private static void mostraUnCdCasuale()
 	{
-		Cd cd_estratto = archivio.cdCasuale(); 
-		System.out.println(cd_estratto.toString());
+		if(archivio.getNumeroCd() > 0)
+		{
+			try
+			{
+				Cd cd_estratto = archivio.cdCasuale(); 
+				System.out.println("CD estratto: " + cd_estratto.toString());
+			}
+			catch (Exception e) 
+			{
+				System.out.println("ERRORE - Nessun CD nell'archivio.");
+			}
+		}
+		else
+		{
+			System.out.println("ERRORE - Nessun CD nell'archivio.");
+		}
 	}
 	
 	/**
@@ -161,7 +175,14 @@ public class ArchivioCDMenu
 	 */
 	private static void visualizzaContenutoCD()
 	{
-		System.out.println("CD disponibili: \n" + archivio.toString());
+		System.out.println("Numero di CD disponibili: " + archivio.getNumeroCd());
+		
+		for(int i = 0; i < archivio.getNumeroCd(); i++)
+		{
+			System.out.print("CD " + (i + 1) + ", brani: " + archivio.getLista_CD().get(i).getNumeroBrani() + ": ");
+			System.out.println(archivio.getLista_CD().get(i).getTitolo());
+		}
+		
 		String titolo_cd = InputDati.inputString("Inserisci il titolo del CD che vuoi visualizzare -> "); 
 		
 		if(archivio.contiene(titolo_cd))
@@ -179,12 +200,36 @@ public class ArchivioCDMenu
 	 */
 	private static void eliminaBrano() 
 	{
-		System.out.println("Inserire il titolo del brano che vuoi eliminare -> ");
-		String titolo_brano_da_eliminare = InputDati.inputString("Inserire il titolo del brano da eliminare -> ");
+		String titolo_brano_da_eliminare = InputDati.inputString("Inserire il titolo del brano che vuoi eliminare -> ");
 		
 		for(int i = 0; i < archivio.getLista_CD().size(); i++)
 		{
+			int index = archivio.getLista_CD().get(i).cercaBranoTitolo(titolo_brano_da_eliminare); 
 			
+			if(index != -1)
+			{
+				try
+				{
+					boolean isDeletingSuccessful = archivio.getLista_CD().get(i).eliminaBrano(titolo_brano_da_eliminare); 
+					
+					if(isDeletingSuccessful)
+					{
+						System.out.println("AVVISO - Brano eliminato correttamente.");
+					}
+					else
+					{
+						System.out.println("ERRORE - Impossibile cancellare il brano inserito.");
+					}
+				}
+				catch (Exception e) 
+				{
+					System.out.println("ERRORE - Impossibile cancellare il brano inserito.");
+				}
+			}
+			else
+			{
+				System.out.println("ERRORE - Impossibile trovare il brano richiesto.");
+			}
 		}
 	}
 
@@ -241,8 +286,14 @@ public class ArchivioCDMenu
 	{
 		// Aggiunge un CD all'archivio
 		Cd cd = creaCD(); 
-		archivio.aggiungiCd(cd);
-		System.out.println("AVVISO - " + cd.getTitolo() + " aggiunto correttamente");
+		if(archivio.aggiungiCd(cd))
+		{
+			System.out.println("AVVISO - " + cd.getTitolo() + " aggiunto correttamente");
+		}
+		else
+		{
+			System.out.println("ERRORE - CD già esisistente.");
+		}
 	}
 	
 	/**
