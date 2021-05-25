@@ -2,29 +2,35 @@ package it.unibs.ing.fp.lab.TamaZoo;
 
 public class Tamagotchi 
 {
-	private static final int MAX_SAZIETA = 100;
-	private static final int MAX_AFFETTO = 100;
-	private static final double PERCENTUALE_DECREMENTO_BISCOTTI = 0.5;
-	private static final double PERCENTUALE_INCREMENTO_CAREZZE = 1;
-	private static final double PERCENTUALE_DECREMENTO_AFFETTO = 0.25;
-	private static final double PERCENTUALE_INCREMENTO_BISCOTTI = 0.1;
+	protected static final int MAX_SAZIETA = 100;
+	protected static final int MIN_SAZIETA = 0;
+	protected static final int MAX_AFFETTO = 100;
+	protected static final int MIN_AFFETTO = 0;
+	protected static final double PERCENTUALE_DECREMENTO_BISCOTTI = 0.5;
+	protected static final double PERCENTUALE_INCREMENTO_CAREZZE = 1;
+	protected static final double PERCENTUALE_DECREMENTO_AFFETTO = 0.25;
+	protected static final double PERCENTUALE_INCREMENTO_BISCOTTI = 0.1;
 	
-	private String nome; 
-	private double soddisfazione_affettiva; 
-	private double grado_sazietà; 
+	protected String nome; 
+	protected double soddisfazione_affettiva; 
+	protected double grado_sazietà; 
 	
-	public Tamagotchi(String nome, double soddisfazione_affettiva, double grado_sazietà)
+	public Tamagotchi(String nome, double soddisfazione_affettiva, double grado_sazietà) throws IllegalArgumentException
 	{
 		if(soddisfazione_affettiva < 0 || grado_sazietà < 0)
 		{
-			throw new IllegalArgumentException(""); 
+			throw new IllegalArgumentException("ERRORE - Numero minore di zero inserito."); 
 		}
-		else
-		{
-			this.nome = nome; 
-			this.soddisfazione_affettiva = soddisfazione_affettiva; 
-			this.grado_sazietà = grado_sazietà; 	
-		}
+		
+		this.nome = nome; 
+		this.soddisfazione_affettiva = soddisfazione_affettiva; 
+		this.grado_sazietà = grado_sazietà; 	
+	}
+	
+	public Tamagotchi(String nome, int grado_sazietà)
+	{
+		this.nome = nome; 
+		this.grado_sazietà = grado_sazietà; 
 	}
 	
 	public boolean sonoMorto()
@@ -34,7 +40,7 @@ public class Tamagotchi
 	
 	public boolean sonoTriste()
 	{
-		return soddisfazione_affettiva < 30 || grado_sazietà < 30; 
+		return soddisfazione_affettiva < 30 || grado_sazietà < 30 || grado_sazietà > 90; 
 	}
 	
 	public void riceviBiscotti(int biscotti)
@@ -51,8 +57,8 @@ public class Tamagotchi
 		double incremento_affetto = PERCENTUALE_INCREMENTO_CAREZZE * carezze; 
 		soddisfazione_affettiva += incremento_affetto; 
 		
-		double decremento_affetto = PERCENTUALE_DECREMENTO_BISCOTTI * carezze; 
-		grado_sazietà -= decremento_affetto; 
+		double decremento_sazietà = PERCENTUALE_DECREMENTO_BISCOTTI * carezze; 
+		grado_sazietà -= decremento_sazietà; 
 	}
 
 	public String getNome() 
