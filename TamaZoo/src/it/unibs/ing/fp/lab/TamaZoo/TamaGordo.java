@@ -25,6 +25,7 @@ public class TamaGordo extends Tamagotchi
 	{
 		double incremento_sazietà = PERCENTUALE_INCREMENTO_BISCOTTI * grado_sazietà * biscotti; 
 		grado_sazietà += incremento_sazietà; 
+		grado_sazietà = Math.min(100, grado_sazietà); 
 	}
 	
 	@Override 
@@ -32,5 +33,6 @@ public class TamaGordo extends Tamagotchi
 	{
 		double decremento_sazietà = PERCENTUALE_DECREMENTO_BISCOTTI * carezze * DECREMENTO_TAMAGORDO; 
 		grado_sazietà -= decremento_sazietà; 
+		grado_sazietà = Math.max(0, grado_sazietà); 
 	}
 }

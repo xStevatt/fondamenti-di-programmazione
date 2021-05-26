@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class TamaZoo 
 {
-	ArrayList<Tamagotchi> lista_tama;
+	private ArrayList<Tamagotchi> lista_tama;
+	private String nome; 
 	
 	public TamaZoo()
 	{
@@ -43,6 +44,19 @@ public class TamaZoo
 		}
 	}
 	
+	public int getNumeroTamaVivi()
+	{
+		int counter = 0; 
+		for(int i = 0; i < lista_tama.size(); i++)
+		{
+			if(!lista_tama.get(i).sonoMorto())
+			{
+				counter++; 
+			}
+		}
+		return counter; 
+	}
+	
 	public boolean areAllTamaDead()
 	{
 		boolean areAllTamaDead = true; 
@@ -59,5 +73,54 @@ public class TamaZoo
 		}
 		
 		return areAllTamaDead; 
+	}
+
+	public String toString() 
+	{
+		StringBuffer caratteristiche_tama = new StringBuffer("");
+		
+		for(int i = 0; i < lista_tama.size(); i++)
+		{
+			if(lista_tama.get(i) instanceof TamaTriste)
+			{
+				caratteristiche_tama.append("Tipo: TamaTriste"); 
+			}
+			else if(lista_tama.get(i) instanceof TamaGordo)
+			{
+				caratteristiche_tama.append("Tipo: TamaGordo"); 
+			}
+			else
+			{
+				caratteristiche_tama.append("Tipo: TamaBase"); 
+			}
+			
+			caratteristiche_tama.append("\n"); 
+			
+			if(lista_tama.get(i).sonoMorto())
+			{
+				caratteristiche_tama.append("Stato: morto"); 
+			}
+			else
+			{
+				caratteristiche_tama.append("Stato: vivo"); 
+			}
+			caratteristiche_tama.append("\n"); 
+			
+			if(lista_tama.get(i).sonoTriste())
+			{
+				caratteristiche_tama.append("Felicità: triste"); 
+			}
+			else
+			{
+				caratteristiche_tama.append("Felicità: felice"); 
+			}
+			caratteristiche_tama.append("\n"); 
+			
+			caratteristiche_tama.append("Nome: " + lista_tama.get(i).getNome() + "\n"); 
+			caratteristiche_tama.append("Soddifazione affettiva: " + lista_tama.get(i).getSoddisfazione_affettiva() + "\n"); 
+			caratteristiche_tama.append("Grado sazietà: " + lista_tama.get(i).getGrado_sazietà() + "\n"); 
+			caratteristiche_tama.append("\n"); 
+		}
+		return caratteristiche_tama.toString(); 
 	}
 }

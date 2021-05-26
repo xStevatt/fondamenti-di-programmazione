@@ -47,18 +47,22 @@ public class Tamagotchi
 	{
 		double incremento_sazietà = PERCENTUALE_INCREMENTO_BISCOTTI * grado_sazietà * biscotti; 
 		grado_sazietà += incremento_sazietà; 
+		grado_sazietà = Math.min(100, grado_sazietà); 
 		
 		double decremento_affetto = PERCENTUALE_DECREMENTO_AFFETTO * biscotti; 
 		soddisfazione_affettiva -= decremento_affetto; 
+		soddisfazione_affettiva = Math.max(0, soddisfazione_affettiva); 
 	}
 	
 	public void riceviCarezze(int carezze)
 	{
 		double incremento_affetto = PERCENTUALE_INCREMENTO_CAREZZE * carezze; 
 		soddisfazione_affettiva += incremento_affetto; 
+		soddisfazione_affettiva = Math.min(100, soddisfazione_affettiva); 
 		
 		double decremento_sazietà = PERCENTUALE_DECREMENTO_BISCOTTI * carezze; 
 		grado_sazietà -= decremento_sazietà; 
+		grado_sazietà = Math.max(0, grado_sazietà);
 	}
 
 	public String getNome() 

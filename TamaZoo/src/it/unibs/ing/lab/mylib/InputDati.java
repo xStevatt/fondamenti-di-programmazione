@@ -209,6 +209,45 @@ public class InputDati
 		return intero; 
 	}	
 	
+	public static int inputInteger(String messaggio_richiesta, int min) 
+	{
+		int intero = 0; 
+		boolean isValid = false;
+		boolean isSuccessful = false; 
+		
+		System.out.print(messaggio_richiesta); 
+		do
+		{
+			try 
+			{
+				intero = input_scanner.nextInt();
+				isSuccessful = true; 
+			}
+			catch (java.util.InputMismatchException e) 
+			{
+				System.out.print(FROMATO_NON_CORRETTO);
+				String stringa_catch = input_scanner.next();
+			}
+			
+			if(isSuccessful)
+			{
+				if(intero >= min)
+				{
+					isValid = !isValid;
+				}
+				else
+				{
+					System.out.print(HAI_SCELTO_UNA_POSSIBILITÀ_NON_VALIDA_RIPROVARE);
+					String stringa_catch = input_scanner.next();
+				}
+			}
+		}
+		while(!isValid && !isSuccessful); 
+		
+		input_scanner.nextLine();
+		return intero; 
+	}
+	
 	public static double inputDouble(String messaggio_richiesta)
 	{
 		double input = 0.0; 
