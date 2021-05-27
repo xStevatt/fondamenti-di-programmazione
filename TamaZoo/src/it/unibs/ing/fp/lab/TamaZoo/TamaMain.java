@@ -2,6 +2,11 @@ package it.unibs.ing.fp.lab.TamaZoo;
 
 import it.unibs.ing.lab.mylib.*;
 
+/**
+ * TamaMain - Classe Main
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public class TamaMain 
 {
 	private static final String VAI_A_CAPO = "\n";
@@ -21,6 +26,9 @@ public class TamaMain
 		mostraMenu();
 	}
 	
+	/**
+	 * Metodo per mostrare a schermo il menù delle opzioni
+	 */
 	public static void mostraMenu()
 	{
 		int numero_tamagotchi = InputDati.inputInteger(INPUT_INSERIRE_IL_NUMERO_DI_TAMAGOTCHI_CHE_SI_VOGLIONO_CREARE, 1); 
@@ -36,11 +44,17 @@ public class TamaMain
 		System.out.println("AVVISO - TUTTI I TAMAGOTCHI SONO MORTI");
 	}
 	
+	/**
+	 * Metodo per stampare a console lo stato di tutti i tamagotchi
+	 */
 	public static void mostraStatoTama()
 	{
 		System.out.println(tamazoo.toString());
 	}
 	
+	/**
+	 * Metodo per interagire (dare biscotti o carezze) al tamagotchi
+	 */
 	public static void interagisciConTama()
 	{
 		String[] scelte = {"carezze", "biscotti"}; 
@@ -62,6 +76,10 @@ public class TamaMain
 		}
 	}
 	
+	/**
+	 * Metodo per creare la lista iniziale di tamagotchi. Il numero di tamagotchi da creare viene passato come parametro
+	 * @param numero_tamagotchi - il numero di tamagotchi che devono essere creati
+	 */
 	public static void creaListaTamagotchi(int numero_tamagotchi) 
 	{
 		for(int i = 0; i < numero_tamagotchi; i++)
@@ -91,6 +109,10 @@ public class TamaMain
 		}
 	}
 	
+	/**
+	 * Metodo per la creazione di un tamagotchi. I dati richiesti vengono chiesti in input
+	 * @return Tamagotchi - viene ritornato un oggetto di tipo tamagotchi creato con dati richiesti in input
+	 */
 	public static Tamagotchi creaTamaBase()
 	{
 		String nome = InputDati.inputString(INPUT_INSERISCI_IL_NOME_DEL_TAMAGOTCHI); 
@@ -100,6 +122,10 @@ public class TamaMain
 		return new Tamagotchi(nome, grado_affettività_iniziale, grado_sazietà_iniziale); 
 	}
 	
+	/**
+	 * Metodo per la creazione di un oggetto di tipo TamaGordo.
+	 * @return TamaGordo - L'oggetto creato viene ritornato dal metodo
+	 */
 	public static TamaGordo creaTamaGordo()
 	{
 		String nome = InputDati.inputString(INPUT_INSERISCI_IL_NOME_DEL_TAMAGORDO); 
@@ -108,6 +134,10 @@ public class TamaMain
 		return new TamaGordo(nome, grado_sazietà_iniziale); 
 	}
 	
+	/**
+	 * Metodo per la creazione di un oggetto di tipo TamaTriste.
+	 * @return TamaGordo - L'oggetto creato viene ritornato 
+	 */
 	public static TamaTriste creaTamaTriste()
 	{
 		String nome = InputDati.inputString(INPUT_INSERISCI_IL_NOME_DEL_TAMATRISTE); 

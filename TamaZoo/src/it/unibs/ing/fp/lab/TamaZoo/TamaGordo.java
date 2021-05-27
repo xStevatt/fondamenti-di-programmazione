@@ -1,5 +1,10 @@
 package it.unibs.ing.fp.lab.TamaZoo;
 
+/**
+ * TamaGordo
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public class TamaGordo extends Tamagotchi
 {
 	protected static final int DECREMENTO_TAMAGORDO = 2;
@@ -10,16 +15,27 @@ public class TamaGordo extends Tamagotchi
 		soddisfazione_affettiva = MAX_AFFETTO; 
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public boolean sonoMorto()
 	{
 		return grado_sazietà == 0; 
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public boolean sonoTriste()
 	{
 		return grado_sazietà < 30; 
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void riceviBiscotti(int biscotti)
 	{
@@ -28,6 +44,9 @@ public class TamaGordo extends Tamagotchi
 		grado_sazietà = Math.min(100, grado_sazietà); 
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override 
 	public void riceviCarezze(int carezze)
 	{

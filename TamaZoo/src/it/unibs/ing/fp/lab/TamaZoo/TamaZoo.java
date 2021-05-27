@@ -2,6 +2,11 @@ package it.unibs.ing.fp.lab.TamaZoo;
 
 import java.util.ArrayList;
 
+/**
+ * TamaZoo
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public class TamaZoo 
 {
 	private ArrayList<Tamagotchi> lista_tama;
@@ -12,16 +17,31 @@ public class TamaZoo
 		lista_tama = new ArrayList<Tamagotchi>(); 
 	}
 	
+	/**
+	 * Aggiunge un tamagotchi alla lista lista_tama
+	 * 
+	 * @param tamagotchi - L'oggetto da aggiungere alla lista dei tamagtochi
+	 */
 	public void aggiungiTama(Tamagotchi tamagotchi)
 	{
 		lista_tama.add(tamagotchi); 
 	}
 	
+	/**
+	 * Rimuove un oggetto dalla lista lista_tama
+	 * 
+	 * @param tamagotchi - L'oggetto da rimuovere alla lista dei tamagotchi
+	 */
 	public void removeTama(Tamagotchi tamagotchi)
 	{
 		lista_tama.remove(tamagotchi); 
 	}
 	
+	/**
+	 * Permette di interagire dando un particolare numero di carezze al tamagotchi
+	 * 
+	 * @param carezze viene passato come parmetro il numero di carezze da dare al tamagotchi 
+	 */
 	public void daiCarezze(int carezze)
 	{
 		for(int i = 0; i < lista_tama.size(); i++)
@@ -33,6 +53,11 @@ public class TamaZoo
 		}
 	}
 	
+	/**
+	 * Permette di interagire dando un particolare numero di carezze al tamagotchi
+	 * 
+	 * @param carezze - viene passato come parmetro il numero di carezze da dare al tamagotchi 
+	 */
 	public void daiBiscotti(int biscotti)
 	{
 		for(int i = 0; i < lista_tama.size(); i++)
@@ -44,6 +69,11 @@ public class TamaZoo
 		}
 	}
 	
+	/**
+	 * Ritorna il numero di tamagotchi vivi presenti nella lista
+	 * 
+	 * @return counter - il numero di tamagotchi vivi che sono stati trovati nella lista
+	 */
 	public int getNumeroTamaVivi()
 	{
 		int counter = 0; 
@@ -57,6 +87,13 @@ public class TamaZoo
 		return counter; 
 	}
 	
+	/**
+	 * Controlla se tutti i tamagotchi sono morti. In caso positivo 
+	 * (i tamagotchi sono tutti morti), allora ritorna true, altrimenti
+	 * ritorna false. 
+	 * 
+	 * @return areAllTamaDead - se tutti i tamagotchi sono morti allora rimane true, altrimenti false
+	 */
 	public boolean areAllTamaDead()
 	{
 		boolean areAllTamaDead = true; 
@@ -75,9 +112,12 @@ public class TamaZoo
 		return areAllTamaDead; 
 	}
 
+	/**
+	 * Ritorna una stringa che contiene tutte le informazioni dei tamagotchi 
+	 */
 	public String toString() 
 	{
-		StringBuffer caratteristiche_tama = new StringBuffer("");
+		StringBuffer caratteristiche_tama = new StringBuffer("Nome tamazoo: " + nome + "\n");
 		
 		for(int i = 0; i < lista_tama.size(); i++)
 		{
