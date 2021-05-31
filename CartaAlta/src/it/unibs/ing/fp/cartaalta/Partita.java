@@ -30,6 +30,34 @@ public class Partita
 		}
 	}
 	
+	public Scommessa scommetti(int importoScomessa, Carta utente, Carta computer)
+	{
+		int differenza_scommesse = utente.compareTo(computer); 
+		Scommessa esisto_scomessa = differenza_scommesse > 0 ? Scommessa.VINTA : (differenza_scommesse < 0 ? Scommessa.PERSA : Scommessa.PAREGGIO); 
+		aggiornaCredito(importoScomessa, esisto_scomessa); 
+		return esisto_scomessa; 
+	}
+	
+	public void aggiornaCredito(int importoScomessa, Scommessa esisto_scommessa)
+	{
+		switch (esisto_scommessa) 
+		{
+		case VINTA:
+			credito += importoScomessa; 
+			break; 
+		case PERSA: 
+			credito -= importoScomessa; 
+			break; 
+		case PAREGGIO: 
+			break; 
+		}
+	}
+	
+	public boolean isFinita()
+	{
+		return credito <= 0 ? true : false; 
+	}
+	
 	public Carta estraiCarta()
 	{
 		return this.mazzo.estraiCarta(); 

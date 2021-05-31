@@ -54,12 +54,10 @@ public class UIManager
 			if(cartaComputer.getValore() > cartaComputer.getValore())
 			{
 				System.out.println("Il computer vince. Riprova!");
-				partita.setCredito(partita.getCredito() - scommessa);
 			}
 			else if(cartaComputer.getValore() < cartaComputer.getValore())
 			{
 				System.out.println("L'utente vince. Congratualazioni!");
-				partita.setCredito(partita.getCredito() + scommessa * 2);
 			}
 			else
 			{
