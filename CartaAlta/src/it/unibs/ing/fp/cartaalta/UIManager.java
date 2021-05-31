@@ -29,6 +29,8 @@ public class UIManager
 			vuoi_continuare = InputDati.inputString("Vuoi continuare il gioco? [yes/no] -> ", scelte); 
 		}
 		while(vuoi_continuare.equalsIgnoreCase("no")); 
+		
+		System.out.println("Grazie per aver giocato a carta più alta!");
 	}
 	
 	public void play(TipoMazzo tipo)
@@ -37,32 +39,42 @@ public class UIManager
 		String nome_utente = InputDati.inputString("Inserisci il tuo nome utente -> "); 
 		int soldi_iniziali = InputDati.inputInteger("Inserisci il tuo saldo iniziale -> ", 0); 
 		
-		Partita partita = new Partita(nome_utente, soldi_iniziali, tipo); 
-		boolean continua_partita = true; 
+		System.out.print("\n");
 		
-		while(continua_partita)
+		Partita partita = new Partita(nome_utente, soldi_iniziali, tipo); 
+		
+		while(!partita.isFinita())
 		{
 			Carta cartaUtente = partita.estraiCarta(); 
-			System.out.println("UTENTE - Carta casuale estratta! Carta selezionata: " + cartaUtente.getValore() + " di " + cartaUtente.getSeme());
+			System.out.println("UTENTE - Carta casuale estratta! Carta selezionata: " + cartaUtente.getNome() + " di " + cartaUtente.getSeme());
 			
 			int scommessa = InputDati.inputInteger("Quanti euro € vuoi scommettere? -> ", 0, partita.getCredito()); 
 			System.out.println("Hai scommesso " + scommessa + "€.");
 			
 			Carta cartaComputer = partita.estraiCarta(); 
-			System.out.println("COMPUTER - Carta casuale estratta! Carta selezionata: " + cartaUtente.getValore() + " di " + cartaUtente.getSeme());
+			System.out.println("COMPUTER - Carta casuale estratta! Carta selezionata: " + cartaComputer.getNome() + " di " + cartaComputer.getSeme());
 			
-			if(cartaComputer.getValore() > cartaComputer.getValore())
-			{
-				System.out.println("Il computer vince. Riprova!");
-			}
-			else if(cartaComputer.getValore() < cartaComputer.getValore())
-			{
-				System.out.println("L'utente vince. Congratualazioni!");
-			}
-			else
-			{
-				System.out.println("Pareggio. Nessuno dei due vince.");
-			}
+			System.out.print("\n");
+			
+			Scommessa esito = partita.scommetti(scommessa, cartaUtente, cartaComputer); 
+			stampaEsitoScommessa(partita, esito, scommessa);
+			stampaStatistiche(partita);
+		}
+	}
+	
+	public void stampaEsitoScommessa(Partita partita, Scommessa esito_scommessa, int importoScommessa)
+	{
+		switch(esito_scommessa)
+		{
+		case VINTA: 
+			System.out.println("AVVISO - Il giocatore " + partita.getNomeGiocatore() + " ha vinto!");
+			break; 
+		case PERSA: 
+			System.out.println("AVVISO - Il giocatore " + partita.getNomeGiocatore() + " ha perso!");
+			break; 
+		case PAREGGIO:
+			System.out.println("AVVISO - Il giocatore " + partita.getNomeGiocatore() + " e il computer hanno pareggiato!");
+			break; 
 		}
 	}
 	

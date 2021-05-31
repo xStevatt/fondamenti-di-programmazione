@@ -39,4 +39,9 @@ public class Carta
 	{
 		this.valore = valore;
 	}
+	
+	public String getNome()
+	{
+		return valore.getNome(); 
+	}
 }
