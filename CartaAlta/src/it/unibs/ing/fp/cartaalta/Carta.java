@@ -30,11 +30,13 @@ public class Carta
 		this.seme = seme;
 	}
 
-	public int getValore() {
+	public int getValore() 
+	{
 		return valore.getValore();
 	}
 
-	public void setValore(ValoreCarta valore) {
+	public void setValore(ValoreCarta valore) 
+	{
 		this.valore = valore;
 	}
 }

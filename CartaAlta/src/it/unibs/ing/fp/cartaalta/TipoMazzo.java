@@ -3,7 +3,7 @@ package it.unibs.ing.fp.cartaalta;
 public enum TipoMazzo 
 {
 	ITALIANO("ITALIANO", new String[]{"SPADE", "BASTONI", "COPPE", "DENARI"}, ValoreCarteItaliane.values()),
-	FRANCESE("FRANCESE", new String[]{"CUORI", "QUADRI", "PICCHE", "FIORI"}, ValoreCarteFrancesi.values()); 
+	FRANCESE("FRANCESE", new String[]{"PICCHE", "FIORI", "CUORI", "QUADRI"}, ValoreCarteFrancesi.values()); 
 	
 	private String nome;
 	private String[] semi; 
