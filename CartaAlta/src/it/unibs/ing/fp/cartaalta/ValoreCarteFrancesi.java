@@ -1,5 +1,11 @@
 package it.unibs.ing.fp.cartaalta;
 
+/**
+ * ENUM per rappresentare le varie carte da gioco francesi
+ * 
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public enum ValoreCarteFrancesi implements ValoreCarta
 {
 	ASSO(14, "ASSO"),

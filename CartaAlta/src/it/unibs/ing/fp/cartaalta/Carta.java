@@ -1,5 +1,11 @@
 package it.unibs.ing.fp.cartaalta;
 
+/**
+ * Carta rappresenta una carta da gioco. È caratterizzata da un seme e da un valore.
+ * 
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public class Carta 
 {
 	private String seme;

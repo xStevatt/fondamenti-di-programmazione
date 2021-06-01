@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import it.unibs.ing.fp.mylib.RandomNumbers;
 
+/**
+ * Mazzo rappresenta un mazzo da gioco. Esso è caratterizzato da una lista di carte. 
+ * 
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public class Mazzo
 {
 	private ArrayList<Carta> carte = new ArrayList<Carta>(); 

@@ -1,5 +1,11 @@
 package it.unibs.ing.fp.cartaalta;
 
+/**
+ * ENUM che rappresenta i vari tipi di mazzi che possono essere utilizzati.
+ * 
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public enum TipoMazzo 
 {
 	ITALIANO("ITALIANO", new String[]{"SPADE", "BASTONI", "COPPE", "DENARI"}, ValoreCarteItaliane.values()),

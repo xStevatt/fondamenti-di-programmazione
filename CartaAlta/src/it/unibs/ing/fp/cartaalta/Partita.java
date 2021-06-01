@@ -1,5 +1,12 @@
 package it.unibs.ing.fp.cartaalta;
 
+/**
+ * Classe che rappresenta una partita del gioco. Una partita è caratterizzata dal nome del giocatore,
+ * dal credito del giocatore (il denaro) e il mazzo di carte che si usano per giocare.
+ * 
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public class Partita 
 {
 	private int credito; 

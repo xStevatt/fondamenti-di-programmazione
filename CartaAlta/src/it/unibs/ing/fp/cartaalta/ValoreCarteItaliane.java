@@ -1,5 +1,11 @@
 package it.unibs.ing.fp.cartaalta;
 
+/**
+ * ENUM per rappresentare le varie carte da gioco italiane
+ * 
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public enum ValoreCarteItaliane implements ValoreCarta
 {
 	ASSO(13, "ASSO"),
