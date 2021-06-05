@@ -29,6 +29,10 @@ public class Partita
 		this.mazzo = new TipoMazzoItaliano(); 
 	}	
 	
+	/**
+	 * Controlla che il credito sia maggiore di zero, altrimenti lancia un'eccezione
+	 * @param credito del giocatore da controllare
+	 */
 	public void checkCredito(int credito)
 	{
 		if(credito <= 0)
@@ -37,6 +41,13 @@ public class Partita
 		}
 	}
 	
+	/**
+	 * Scommette sull'estrazione delle carte e ritorna l'esito della scommessa
+	 * @param importoScomessa - l'importo di denaro scommesso (int)
+	 * @param utente - viene passata la carta dell'utente
+	 * @param computer - viene passata la carta del computer
+	 * @return viene ritornato l'esito della scommessa (di tipo Scommessa)
+	 */
 	public Scommessa scommetti(int importoScomessa, Carta utente, Carta computer)
 	{
 		int differenza_scommesse = utente.compareTo(computer); 
@@ -45,6 +56,12 @@ public class Partita
 		return esisto_scomessa; 
 	}
 	
+	/**
+	 * Aggiorna il credito dopo l'esito della scommessa. 
+	 * 
+	 * @param importoScomessa - il denaro che era stato scomesso dal giocatore
+	 * @param esisto_scommessa - l'esito della scomessa che è stata effettuata. 
+	 */
 	public void aggiornaCredito(int importoScomessa, Scommessa esisto_scommessa)
 	{
 		switch (esisto_scommessa) 
@@ -60,11 +77,21 @@ public class Partita
 		}
 	}
 	
+	/**
+	 * Controlla se la partita è terminata o meno. 
+	 * 
+	 * @return ritorna true se è finita (credito minore o uguale di zero), altrimenti ritorna false. 
+	 */
 	public boolean isFinita()
 	{
 		return credito <= 0 ? true : false; 
 	}
 	
+	/**
+	 * Estrae una carta casuale e la ritorna. 
+	 * 
+	 * @return la carta estratta
+	 */
 	public Carta estraiCarta()
 	{
 		return this.mazzo.estraiCarta(); 

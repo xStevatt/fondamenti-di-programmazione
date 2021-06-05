@@ -8,6 +8,13 @@ package it.unibs.ing.fp.cartaalta;
  */
 public interface ValoreCarta 
 {
+	/**
+	 * @return il valore della carta 
+	 */
 	int getValore(); 
+	/**
+	 * 
+	 * @return il nome della carta
+	 */
 	String getNome(); 
 }

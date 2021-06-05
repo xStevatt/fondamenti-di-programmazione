@@ -2,6 +2,12 @@ package it.unibs.ing.fp.cartaalta;
 
 import it.unibs.ing.fp.mylib.InputDati;
 
+/**
+ * Classe che gestisce la visualizzazione in console del programma. 
+ * 
+ * @author Stefano Valloncini
+ * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
+ */
 public class UIManager 
 {
 	private static final String CREDITTO_ATTUALE = "Creditto attuale: ";
@@ -22,7 +28,10 @@ public class UIManager
 	private static final String[] tipi_carte = {"Italiane", "Francesi"}; 
 	private static final String[] scelte = {RISPOSTA_YES, RISPOSTA_NO}; 
 	
-	public void mostraMenu()
+	/**
+	 * Metodo che mostra a schermo il menù delle impostazioni
+	 */
+	public static void mostraMenu()
 	{
 		System.out.println(MESSAGGIO_BENVENUTO);
 		
@@ -43,12 +52,16 @@ public class UIManager
 			
 			vuoi_continuare = InputDati.inputString(VUOI_CONTINUARE_IL_GIOCO_YES_NO, scelte); 
 		}
-		while(vuoi_continuare.equalsIgnoreCase(RISPOSTA_NO)); 
+		while(vuoi_continuare.equalsIgnoreCase(RISPOSTA_YES)); 
 		
 		System.out.println(GRAZIE_PER_AVER_GIOCATO_A_CARTA_PIÙ_ALTA);
 	}
 	
-	public void play(TipoMazzo tipo)
+	/**
+	 * Metodo che gestisce la partita e permette di scommettere sull'esito dell'estrazione delle carte
+	 * @param tipo - il tipo di mazzo che si utilizza nella partita
+	 */
+	public static void play(TipoMazzo tipo)
 	{
 		System.out.println(AVVISO_CONFIGURAZIONE_GIOCO);
 		String nome_utente = InputDati.inputString(INSERISCI_IL_TUO_NOME_UTENTE); 
@@ -77,7 +90,14 @@ public class UIManager
 		}
 	}
 	
-	public void stampaEsitoScommessa(Partita partita, Scommessa esito_scommessa, int importoScommessa)
+	/**
+	 * Metodo che stampa a schermo l'esito della scommessa. 
+	 * 
+	 * @param partita - viene passata l'oggetto di tipo Partita (la partita che si sta giocando)
+	 * @param esito_scommessa - viene passato l'esito della scommessa che deve essere stampato
+	 * @param importoScommessa - viene passato l'importo della scomessa che è stato fatto
+	 */
+	public static void stampaEsitoScommessa(Partita partita, Scommessa esito_scommessa, int importoScommessa)
 	{
 		switch(esito_scommessa)
 		{
@@ -93,7 +113,13 @@ public class UIManager
 		}
 	}
 	
-	public void stampaStatistiche(Partita partita)
+	/**
+	 * Metodo che stampa a schermo le statistiche della partita 
+	 * (il credito attuale del giocatore). 
+	 * 
+	 * @param partita
+	 */
+	public static void stampaStatistiche(Partita partita)
 	{
 		System.out.print(VAI_A_CAPO);
 		System.out.println(CREDITTO_ATTUALE + partita.getCredito());

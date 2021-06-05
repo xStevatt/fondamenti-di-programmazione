@@ -19,6 +19,11 @@ public class Mazzo
 		carte = costruisciMazzo(tipo_mazzo.getSemi(), tipo_mazzo.getValori()); 
 	}
 	
+	/**
+	 * Estrae una carta casuale dal mazzo delle carte.
+	 * 
+	 * @return la carta estratta 
+	 */
 	public Carta estraiCarta()
 	{
 		int index_estratto = RandomNumbers.getRandomInteger(0, carte.size()); 
@@ -26,6 +31,12 @@ public class Mazzo
 		return carta_estratta; 
 	}
 	
+	/**
+	 * Costruisce il mazzo di gioco estraendo le carte e inserendole nel mazzo
+	 * @param semi - array di String contente i semi delle carte (es. "PICCHE", "QUADRI"...) 
+	 * @param valori - array di valori delle carte (1, 2, ...) 
+	 * @return
+	 */
 	public ArrayList<Carta> costruisciMazzo(String[] semi, ValoreCarta[] valori)
 	{
 		ArrayList<Carta> mazzo = new ArrayList<Carta>(); 

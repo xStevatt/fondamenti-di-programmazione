@@ -17,6 +17,12 @@ public class Carta
 		this.valore = valore; 
 	}
 	
+	/**
+	 * Metodo che compara due carte e ritorna la differenza tra i valori delle due carte. 
+	 * 
+	 * @param carta - la carta che va confrontata 
+	 * @return viene ritornata la differenza tra i valori delle due carte. 
+	 */
 	public int compareTo(Carta carta)
 	{
 		return this.getValore() - carta.getValore();
