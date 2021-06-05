@@ -1,0 +1,2 @@
+# Carta più alta
+Ciclicamente il banco estrae una carta a caso e la propone all'utente, che decide quanto puntare sulla carta. Quindi si parte da un minimo di 1 euro sino al massimo della sua disponibilità economica (inserita come input iniziale). 
