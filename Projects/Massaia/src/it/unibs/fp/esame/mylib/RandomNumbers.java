@@ -1,4 +1,4 @@
-package it.unibs.fp.lab.mylib;
+package it.unibs.fp.esame.mylib;
 
 import java.util.Random;
 

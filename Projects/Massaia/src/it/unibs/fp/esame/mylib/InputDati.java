@@ -183,6 +183,13 @@ public class InputDati
 		return intero;
 	}
 
+	/**
+	 * METODO PER L'INSERIMENTO DI UN INTERO CHE DEVE ESSERE DI UN VALORE MINIMO
+	 * 
+	 * @param messaggio_richiesta - Messaggio di richiesta dell'input all'utente
+	 * @param min                 - minimo numero estraibile (compreso)
+	 * @return viene ritornato l'intero inserito in input
+	 */
 	public static int inputInteger(String messaggio_richiesta, int min)
 	{
 		int intero = 0;
