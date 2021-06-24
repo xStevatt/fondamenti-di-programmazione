@@ -12,6 +12,7 @@ public class Ristorante
 	{
 		this.nomeRistorante = nomeRistorante;
 		listaRicette = new ArrayList<Ricetta>();
+		listaIngredienti = new ArrayList<Ingrediente>();
 	}
 
 	public void aggiungiRicetta(Ricetta ricetta)

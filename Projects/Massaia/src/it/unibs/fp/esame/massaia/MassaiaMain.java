@@ -20,18 +20,18 @@ public class MassaiaMain
 		String[] scelte = { "Crea un nuovo ingrediente", "Crea una nuova ricetta", "Crea un nuovo menu",
 				"Visualizza elenco ricette" };
 
-		MyMenu menu = new MyMenu("Menu Ristorante", scelte);
+		MyMenu menu = new MyMenu("Menu Ristorante " + nomeRistorante, scelte);
 		int scelta = -1;
 
 		do
 		{
-			menu.mostraMenu();
-			scelta = menu.inserisciScelta();
+			scelta = menu.mostraMenu();
 
 			switch (scelta)
 			{
 			case 1:
 				Ingrediente ingrediente = creaIngrediente();
+				ristorante.aggiungiIngrediente(ingrediente);
 				break;
 			case 2:
 				Ricetta ricetta = creaRicetta();
@@ -44,12 +44,14 @@ public class MassaiaMain
 			}
 		}
 		while (scelta != 0);
+
+		System.out.println("\nGrazie per aver usato MASSAIA!");
 	}
 
 	public static Ingrediente creaIngrediente()
 	{
 		String nomeIngrediente = InputDati.inputString("Inserisci il nome dell'ingrediente");
-		int assettoCalorico = InputDati.inputInteger(nomeIngrediente, 0);
+		int assettoCalorico = InputDati.inputInteger("Inserisci l'assetto calorico di " + nomeIngrediente, 0);
 
 		return new Ingrediente(nomeIngrediente, assettoCalorico);
 	}
@@ -84,5 +86,4 @@ public class MassaiaMain
 
 		return new Ricetta(nome, descrizione, listaIngredientiRicetta, primoPiatto);
 	}
-
 }
