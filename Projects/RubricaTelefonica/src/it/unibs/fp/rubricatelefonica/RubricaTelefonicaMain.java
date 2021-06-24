@@ -37,13 +37,18 @@ public class RubricaTelefonicaMain
 					String opzione = InputDati.leggiStringa("Azienda o Persona? -> ");
 					if (opzione.equalsIgnoreCase("azienda"))
 					{
-						Azienda azienda = creaAzienda();
+						Soggetto azienda = creaAzienda();
 						isValid = true;
 						rubrica.aggiungiSoggetto(azienda);
+
+						if (azienda instanceof Azienda)
+						{
+							System.out.println("GIUSTO");
+						}
 					}
 					if (opzione.equalsIgnoreCase("persona"))
 					{
-						Persona persona = creaPersona();
+						Soggetto persona = creaPersona();
 						isValid = true;
 						rubrica.aggiungiSoggetto(persona);
 					}
@@ -59,15 +64,29 @@ public class RubricaTelefonicaMain
 
 				break;
 			case 2:
+				String cognome = InputDati
+						.leggiStringa("Inserisci la ragione sociale dell'azienda o il cognome della persona -> ");
+				rubrica.ricercaSoggetto(cognome);
 				break;
 			case 3:
+				String nomeContatto = InputDati.leggiStringa("Inserisci il nome del contatto da ricercare -> ");
+				rubrica.ricercaContatto(nomeContatto);
 				break;
 			case 4:
+				String nomeSoggetto = InputDati
+						.leggiStringa("Inserisci il cognome del soggetto a cui aggiungere il contatto -> ");
 				Contatto contatto = creaContatto();
+				rubrica.ricercaSoggetto(nomeSoggetto, contatto);
 				break;
 			case 5:
+
 				break;
 			case 6:
+				String nomeSoggettoDaEliminare = InputDati
+						.leggiStringa("Inserisci il cognome del soggetto a cui rimuovere un contatto");
+				String nomeContattoDaEliminare = InputDati.leggiStringa("Inserisci il nome del contatto da cancellare");
+				rubrica.eliminaContatto(nomeSoggettoDaEliminare, nomeContattoDaEliminare);
+				System.out.println(rubrica.toString());
 				break;
 			}
 		}
@@ -111,7 +130,7 @@ public class RubricaTelefonicaMain
 		ArrayList<Contatto> listaContatti = new ArrayList<>();
 
 		int scelta = -1;
-
+		// 🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰
 		listaContatti.add(creaContatto());
 		do
 		{
@@ -143,4 +162,5 @@ public class RubricaTelefonicaMain
 
 		return new Azienda(listaContatti, nome, cognome);
 	}
+
 }

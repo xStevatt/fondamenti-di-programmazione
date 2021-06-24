@@ -16,9 +16,24 @@ public abstract class Soggetto
 		listaContatti.add(contatto);
 	}
 
+	public void eliminaContatto(int index)
+	{
+		listaContatti.remove(index);
+	}
+
 	@Override
 	public String toString()
 	{
 		return "Soggetto [listaContatti=" + listaContatti + "]";
+	}
+
+	public ArrayList<Contatto> getListaContatti()
+	{
+		return listaContatti;
+	}
+
+	public void setListaContatti(ArrayList<Contatto> listaContatti)
+	{
+		this.listaContatti = listaContatti;
 	}
 }
