@@ -10,13 +10,11 @@ public class Ricetta
 	private int calorie;
 	private boolean primoPiatto;
 
-	public Ricetta(String nome, String descrizione, ArrayList<Ingrediente> listaIngredienti, int calorie,
-			boolean primoPiatto)
+	public Ricetta(String nome, String descrizione, ArrayList<Ingrediente> listaIngredienti, boolean primoPiatto)
 	{
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.listaIngredienti = listaIngredienti;
-		this.calorie = calorie;
 		this.primoPiatto = primoPiatto;
 	}
 
