@@ -18,7 +18,7 @@ public class MassaiaMain
 		Ristorante ristorante = new Ristorante(nomeRistorante);
 
 		String[] scelte = { "Crea un nuovo ingrediente", "Crea una nuova ricetta", "Crea un nuovo menu",
-				"Visualizza elenco ricette" };
+				"Visualizza elenco ricette", "Visualizza elenco ingredienti"};
 
 		MyMenu menu = new MyMenu("Menu Ristorante " + nomeRistorante, scelte);
 		int scelta = -1;
@@ -38,9 +38,13 @@ public class MassaiaMain
 				ristorante.aggiungiRicetta(ricetta);
 				break;
 			case 3:
+				int apportoCaloricoMassimo = InputDati.inputInteger("Inserisci il menu", 0); 
+				creaMenuRistorante(ristorante., apportoCaloricoMassimo); 
 				break;
 			case 4:
 				break;
+			case 5: 
+				break; 
 			}
 		}
 		while (scelta != 0);
@@ -85,5 +89,10 @@ public class MassaiaMain
 			primoPiatto = false;
 
 		return new Ricetta(nome, descrizione, listaIngredientiRicetta, primoPiatto);
+	}
+
+	public static void creaMenuRistorante(ArrayList<Ricetta> listaRicette, int apportoCaloricoMassimo)
+	{
+
 	}
 }

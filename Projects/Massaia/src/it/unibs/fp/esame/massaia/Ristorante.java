@@ -24,4 +24,34 @@ public class Ristorante
 	{
 		listaIngredienti.add(ingrediente);
 	}
+
+	public String getNomeRistorante()
+	{
+		return nomeRistorante;
+	}
+
+	public void setNomeRistorante(String nomeRistorante)
+	{
+		this.nomeRistorante = nomeRistorante;
+	}
+
+	public ArrayList<Ricetta> getListaRicette()
+	{
+		return listaRicette;
+	}
+
+	public void setListaRicette(ArrayList<Ricetta> listaRicette)
+	{
+		this.listaRicette = listaRicette;
+	}
+
+	public ArrayList<Ingrediente> getListaIngredienti()
+	{
+		return listaIngredienti;
+	}
+
+	public void setListaIngredienti(ArrayList<Ingrediente> listaIngredienti)
+	{
+		this.listaIngredienti = listaIngredienti;
+	}
 }
