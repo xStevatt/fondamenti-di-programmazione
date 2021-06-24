@@ -1,197 +1,209 @@
-package it.unibs.fp.mylib; 
-import java.util.Scanner; 
+package it.unibs.fp.mylib;
+
+import java.util.Scanner;
 
 /**
  * Classe per l'input di dati
+ * 
  * @author Stefano Valloncini
  * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
  */
 
-public class InputDati 
+public class InputDati
 {
-	private static final String FROMATO_NON_CORRETTO = "Il numero inserito non � nel formato richiesto! Riprovare: ";
+	private static final String FORMATO_NON_CORRETTO = "Il numero inserito non � nel formato richiesto! Riprovare: ";
 	private static final String HAI_SCELTO_UNA_POSSIBILITA_NON_VALIDA_RIPROVARE = "Hai scelto una possibilit� non valida! Riprovare: ";
 	private static final String INSERIMENTO_VUOTO_RIPROVARE = "Inserimento vuoto! Riprovare: ";
-	
-	static Scanner input_scanner = new Scanner(System.in); 
-	
+
+	static Scanner input_scanner = new Scanner(System.in);
+
 	public static void stampaMessaggioInput(String messaggio)
 	{
 		System.out.print("INPUT - " + messaggio + " -> ");
 	}
-	
+
 	/**
-	 * METODO PER L'INSERIMENTO DI UNA STRINGA SENZA REQUISITI (qualunque stringa inserita sar� considerata valida). 
+	 * METODO PER L'INSERIMENTO DI UNA STRINGA SENZA REQUISITI (qualunque stringa
+	 * inserita sar� considerata valida).
+	 * 
 	 * @param messaggio_richiesta - Messaggio di richiesta dell'input all'utente
-	 * @return viene ritornata la stringa inserita in input dall'utente dopo aver verificato che essa non sia vuota
+	 * @return viene ritornata la stringa inserita in input dall'utente dopo aver
+	 *         verificato che essa non sia vuota
 	 */
 	public static String inputString(String messaggio_richiesta)
 	{
-		String string_input = ""; 
-		
-		stampaMessaggioInput(messaggio_richiesta); 
-		
+		String string_input = "";
+
+		stampaMessaggioInput(messaggio_richiesta);
+
 		do
 		{
-			string_input = input_scanner.next().trim(); 
-			
-			if(string_input.length() == 0)
-				stampaMessaggioInput(INSERIMENTO_VUOTO_RIPROVARE); 
+			string_input = input_scanner.next().trim();
+
+			if (string_input.length() == 0)
+				stampaMessaggioInput(INSERIMENTO_VUOTO_RIPROVARE);
 		}
-		while(string_input.length() == 0); 
-		
-		input_scanner.nextLine(); 
-		
-		return string_input; 
+		while (string_input.length() == 0);
+
+		input_scanner.nextLine();
+
+		return string_input;
 	}
-	
+
 	/**
-	 * METODO PER L'INSERIMENTO DI UNA STRINGA CON IL REQUISITO DI APPARTENERE AD UN "ASSET" (cio� un insieme di valori possibili). 
+	 * METODO PER L'INSERIMENTO DI UNA STRINGA CON IL REQUISITO DI APPARTENERE AD UN
+	 * "ASSET" (cio� un insieme di valori possibili).
+	 * 
 	 * @param messaggio_richiesta - Messaggio di richiesta dell'input all'utente
-	 * @param string_asset - Array con all'interno gli elementi che possono essere inseriti dall'utente 
-	 * @return viene ritornata la stringa inserita in input dall'utente dopo aver verificato che essa non sia vuota e sia presente nell'array
+	 * @param string_asset        - Array con all'interno gli elementi che possono
+	 *                            essere inseriti dall'utente
+	 * @return viene ritornata la stringa inserita in input dall'utente dopo aver
+	 *         verificato che essa non sia vuota e sia presente nell'array
 	 */
-	public static String inputString(String messaggio_richiesta, String [] string_asset)
+	public static String inputString(String messaggio_richiesta, String[] string_asset)
 	{
-		String string_input = ""; 
-		boolean isValid = false; 
-		
-		System.out.print(messaggio_richiesta);
+		String string_input = "";
+		boolean isValid = false;
+
+		stampaMessaggioInput(messaggio_richiesta);
 		do
 		{
-			string_input = input_scanner.next().trim(); 
-			
-			if(string_input.length() == 0)
+			string_input = input_scanner.next().trim();
+
+			if (string_input.length() == 0)
 			{
-				System.out.print(INSERIMENTO_VUOTO_RIPROVARE);
+				stampaMessaggioInput(INSERIMENTO_VUOTO_RIPROVARE);
 			}
 			else
 			{
-				for(int i = 0; i < string_asset.length; i++)
+				for (int i = 0; i < string_asset.length; i++)
 				{
-					if(string_input.equalsIgnoreCase(string_asset[i]))
+					if (string_input.equalsIgnoreCase(string_asset[i]))
 					{
-						isValid = !isValid; 
-						break; 
+						isValid = !isValid;
+						break;
 					}
 				}
-				if(isValid)
-					return string_input; 
+				if (isValid)
+					return string_input;
 				else
-					System.out.print(HAI_SCELTO_UNA_POSSIBILITA_NON_VALIDA_RIPROVARE);
+					stampaMessaggioInput(HAI_SCELTO_UNA_POSSIBILITA_NON_VALIDA_RIPROVARE);
 			}
 		}
-		while(string_input.length() == 0 || !isValid); 
-		
+		while (string_input.length() == 0 || !isValid);
+
 		input_scanner.nextLine(); // pulisce la stringa
-		
-		return string_input; 
-	}	
-	
+
+		return string_input;
+	}
+
 	/**
 	 * METODO PER L'INSERIMENTO DI UN INTERO QUALUNQUE
+	 * 
 	 * @param messaggio_richiesta - Messaggio di richiesta dell'input all'utente
-	 * @return viene ritornato l'intero inserito in input 
+	 * @return viene ritornato l'intero inserito in input
 	 */
-	public static int inputInteger(String messaggio_richiesta) 
+	public static int inputInteger(String messaggio_richiesta)
 	{
-		int intero = 0; 
-		System.out.print(messaggio_richiesta); 
-		boolean isValid = false; 
-		
+		int intero = 0;
+		stampaMessaggioInput(messaggio_richiesta);
+		boolean isValid = false;
+
 		do
 		{
 			try
 			{
-				intero = input_scanner.nextInt(); 
-				isValid = true; 
+				intero = input_scanner.nextInt();
+				isValid = true;
 			}
-			catch (java.util.InputMismatchException e) 
+			catch (java.util.InputMismatchException e)
 			{
-				System.out.print(FROMATO_NON_CORRETTO);
+				stampaMessaggioInput(FORMATO_NON_CORRETTO);
 				String stringa_catch = input_scanner.next();
 			}
 		}
-		while(!isValid); 
-		
+		while (!isValid);
+
 		input_scanner.nextLine();
-		return intero; 
+		return intero;
 	}
-	
+
 	/**
-	 * METODO PER L'INSERIMENTO DI UN INTERO CHE DEVE ESSERE COMPRESO TRA UN PARTICOLARE RANGE (min - max) 
+	 * METODO PER L'INSERIMENTO DI UN INTERO CHE DEVE ESSERE COMPRESO TRA UN
+	 * PARTICOLARE RANGE (min - max)
+	 * 
 	 * @param messaggio_richiesta - Messaggio di richiesta dell'input all'utente
-	 * @param min - minimo numero estraibile (compreso)
-	 * @param max - massimo numero estraibile (compreso)
+	 * @param min                 - minimo numero estraibile (compreso)
+	 * @param max                 - massimo numero estraibile (compreso)
 	 * @return viene ritornato l'intero inserito in input
 	 */
-	public static int inputInteger(String messaggio_richiesta, int min, int max) 
+	public static int inputInteger(String messaggio_richiesta, int min, int max)
 	{
-		int intero = 0; 
+		int intero = 0;
 		boolean isValid = false;
-		boolean isSuccessful = false; 
-		
-		if(min > max)
+		boolean isSuccessful = false;
+
+		if (min > max)
 		{
-			int temp = max; 
-			max = min; 
-			min = temp; 
+			int temp = max;
+			max = min;
+			min = temp;
 		}
-		
-		System.out.print(messaggio_richiesta); 
+
+		stampaMessaggioInput(messaggio_richiesta);
 		do
 		{
-			try 
+			try
 			{
 				intero = input_scanner.nextInt();
-				isSuccessful = true; 
+				isSuccessful = true;
 			}
-			catch (java.util.InputMismatchException e) 
+			catch (java.util.InputMismatchException e)
 			{
-				System.out.print(FROMATO_NON_CORRETTO);
+				stampaMessaggioInput(FORMATO_NON_CORRETTO);
 				String stringa_catch = input_scanner.next();
 			}
-			
-			if(isSuccessful)
+
+			if (isSuccessful)
 			{
-				if(intero >= min && intero <= max)
+				if (intero >= min && intero <= max)
 				{
 					isValid = !isValid;
 				}
 				else
 				{
-					System.out.print(HAI_SCELTO_UNA_POSSIBILITA_NON_VALIDA_RIPROVARE);
+					stampaMessaggioInput(HAI_SCELTO_UNA_POSSIBILITA_NON_VALIDA_RIPROVARE);
 					String stringa_catch = input_scanner.next();
 				}
 			}
 		}
-		while(!isValid && !isSuccessful); 
-		
+		while (!isValid && !isSuccessful);
+
 		input_scanner.nextLine();
-		return intero; 
-	}	
-	
+		return intero;
+	}
+
 	public static double inputDouble(String messaggio_richiesta)
 	{
-		double input = 0.0; 
-		boolean isValid = false; 
-		
-		System.out.print(messaggio_richiesta);
+		double input = 0.0;
+		boolean isValid = false;
+
+		stampaMessaggioInput(messaggio_richiesta);
 		do
 		{
 			try
 			{
-				input = input_scanner.nextDouble(); 
-				isValid = true; 
+				input = input_scanner.nextDouble();
+				isValid = true;
 			}
-			catch(java.util.InputMismatchException e)
+			catch (java.util.InputMismatchException e)
 			{
-				System.out.print(FROMATO_NON_CORRETTO);
+				stampaMessaggioInput(FORMATO_NON_CORRETTO);
 				String stringa_catch = input_scanner.next();
 			}
 		}
-		while(!isValid); 
-		
-		return input; 
+		while (!isValid);
+
+		return input;
 	}
 }

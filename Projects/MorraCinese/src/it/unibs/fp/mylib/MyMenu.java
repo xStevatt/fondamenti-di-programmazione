@@ -5,7 +5,7 @@ package it.unibs.fp.mylib;
  * @author Stefano
  * @see <https://github.com/xStevatt/FondamentiDiProgrammazione>
  */
-public class GenerateMenu 
+public class MyMenu 
 {
 	private static final String ESCI_DAL_PROGRAMMA = "0 - ESCI DAL PROGRAMMA";
 	private static final String SPAZIO_VUOTO_SINGOLO = " ";
@@ -16,7 +16,7 @@ public class GenerateMenu
 	private String titolo; 
 	private String scelte[]; 
 	
-	public GenerateMenu(String titolo, String scelte[])
+	public MyMenu(String titolo, String scelte[])
 	{
 		this.titolo = titolo; 
 		this.scelte = scelte; 

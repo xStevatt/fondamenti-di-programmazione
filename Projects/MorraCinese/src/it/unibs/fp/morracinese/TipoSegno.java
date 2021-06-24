@@ -1,10 +1,6 @@
 package it.unibs.fp.morracinese;
 
-public enum Segno 
+public enum Segno
 {
-	FORBICI,
-	CARTA,
-	SASSO; 
-	
-	private 
+	FORBICI, CARTA, SASSO;
 }
