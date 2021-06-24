@@ -49,29 +49,6 @@ public class RubricaTelefonica
 		}
 	}
 
-	public void modificaContatto(String nomeSoggetto, String nomeContatto)
-	{
-		for (int i = 0; i < listaSoggetti.size(); i++)
-		{
-			if (listaSoggetti.get(i) instanceof Azienda)
-			{
-				if (nomeSoggetto.equalsIgnoreCase(((Azienda) listaSoggetti.get(i)).getRagioneSociale()))
-				{
-					listaSoggetti.get(i).aggiungiContatto(contatto);
-					System.out.println(listaSoggetti.get(i).toString());
-				}
-			}
-			else
-			{
-				if (nomeSoggetto.equalsIgnoreCase(((Persona) listaSoggetti.get(i)).getCognome()))
-				{
-					listaSoggetti.get(i).aggiungiContatto(contatto);
-					System.out.println(listaSoggetti.get(i).toString());
-				}
-			}
-		}
-	}
-
 	public void ricercaSoggetto(String nomeRicerca, Contatto contatto)
 	{
 		for (int i = 0; i < listaSoggetti.size(); i++)
