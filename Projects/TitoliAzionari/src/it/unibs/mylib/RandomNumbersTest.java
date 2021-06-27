@@ -1,4 +1,4 @@
-package it.unibs.fp.lab.mylib;
+package it.unibs.mylib;
 
 import org.junit.jupiter.api.Test;
 

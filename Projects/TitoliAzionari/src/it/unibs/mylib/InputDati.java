@@ -1,4 +1,4 @@
-package it.unibs.fp.lab.mylib;
+package it.unibs.mylib;
 
 import java.util.Scanner;
 
@@ -167,52 +167,6 @@ public class InputDati
 			if (isSuccessful)
 			{
 				if (intero >= min && intero <= max)
-				{
-					isValid = !isValid;
-				}
-				else
-				{
-					stampaMessaggioInput(HAI_SCELTO_UNA_POSSIBILITA_NON_VALIDA_RIPROVARE);
-					String stringa_catch = input_scanner.next();
-				}
-			}
-		}
-		while (!isValid && !isSuccessful);
-
-		input_scanner.nextLine();
-		return intero;
-	}
-
-	/**
-	 * METODO PER L'INSERIMENTO DI UN INTERO CHE DEVE ESSERE DI UN VALORE MINIMO
-	 * 
-	 * @param messaggio_richiesta - Messaggio di richiesta dell'input all'utente
-	 * @param min                 - minimo numero estraibile (compreso)
-	 * @return viene ritornato l'intero inserito in input
-	 */
-	public static int inputInteger(String messaggio_richiesta, int min)
-	{
-		int intero = 0;
-		boolean isValid = false;
-		boolean isSuccessful = false;
-
-		stampaMessaggioInput(messaggio_richiesta);
-		do
-		{
-			try
-			{
-				intero = input_scanner.nextInt();
-				isSuccessful = true;
-			}
-			catch (java.util.InputMismatchException e)
-			{
-				stampaMessaggioInput(FORMATO_NON_CORRETTO);
-				String stringa_catch = input_scanner.next();
-			}
-
-			if (isSuccessful)
-			{
-				if (intero >= min)
 				{
 					isValid = !isValid;
 				}
