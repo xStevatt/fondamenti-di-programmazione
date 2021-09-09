@@ -1,0 +1,11 @@
+Per facilitare una massaia, si richiede un programma con le seguenti funzionalità:
+• gestione di un elenco di ingredienti tipici, ciascuno con un nome ed un valore di calorie
+   apportate per ciascun ettogrammo ingerito, con possibilità di inserimento di nuovi ingredienti e
+   di visualizzazione dell'elenco;
+• gestione di un elenco di ricette: ciascuna ricetta ha un nome, una descrizione  ed è costituita da un certo
+    numero  di ingredienti tipici con le rispettive quantità ed è classificata come primo o secondo piatto. Il
+    programma permette di inserire una nuova ricetta (calcolando automaticamente le calorie totali
+    apportate) e di visualizzare l'elenco delle ricette con le relative calorie.
+• composizione menu: dato un valore massimo di calorie tollerabili, si richiede di presentare un
+   menu composto da un primo e un secondo piatto che lo rispetti oppure di segnalare che non
+  esiste nessuna combinazione possibile con le ricette attuali.
