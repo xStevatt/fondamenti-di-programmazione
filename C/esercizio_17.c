@@ -1,6 +1,13 @@
 #include <stdio.h>
 #define LENGTH 20
 
+/*
+    Invertire una stringa inserita in input. Mostrare a schermo la stringa invertita.
+    Fare questo con e senza l'utilizzo di un secondo vettore. 
+
+    Author: STEFANO VALLONCINI
+*/
+
 int main(void)
 {
     char string[LENGTH], inversa[LENGTH];

@@ -3,6 +3,14 @@
 #define ROWS 4
 #define COLUMNS 5
 
+/*
+    Inizializza una matrice di 4 righe e 5 colonne con dei numeri casuali tra 0 - 9. 
+    Creare un vettore composto da 5 elementi. Effetturare la moltiplicazione tra 
+    matrice e vettore. Mostrare a schermo il vettore risultante
+    
+    AUTHOR: STEFANO VALLONCINI
+*/
+
 int main(void)
 {
     int mat[ROWS][COLUMNS], vect[COLUMNS], res[ROWS] = {0};

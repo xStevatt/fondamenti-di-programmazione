@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+/*
+    Dati due numeri interi n e m, calcolare il massimo comun divisore. 
+    
+    AUTHOR: STEFANO VALLONCINI
+*/
+
 int main()
 {
     int n, m;

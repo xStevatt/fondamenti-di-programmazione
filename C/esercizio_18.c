@@ -3,6 +3,13 @@
 #define ROWS 4
 #define COLUMNS 3
 
+/*
+    Inizializza un matrice con numeri causali compresi tra 0 - 9. 
+    Mostrare a schermo la somma di ciascuna riga e di ciascuna colonna della matrice. 
+
+    Author: Stefano Valloncini
+*/
+
 int main(void)
 {
     int mat[ROWS][COLUMNS], sum;

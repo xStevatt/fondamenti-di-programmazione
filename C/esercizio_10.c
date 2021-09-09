@@ -6,7 +6,7 @@
     Ciascuna coppia indica il numeratore ed il denominatore di una frazione.
     Visualizzare la somma delle frazioni acquisite ridotta ai minimi termini.
 
-    Author: Stefano Valloncini
+    Author: STEFANO VALLONCINI
 */
 
 int MCD(int a, int b);

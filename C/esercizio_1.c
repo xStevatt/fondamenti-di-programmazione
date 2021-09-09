@@ -7,6 +7,8 @@
     dividendo ed il divisore di una divisione.
     Visualizzare il quoziente intero, il resto ed il
     quoziente reale della divisione.
+
+    AUTHOR: STEFANO VALLONCINI
 */
 
 int main()

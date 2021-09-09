@@ -2,6 +2,12 @@
 #include <stdbool.h>
 #define SIZE 3
 
+/*
+    GIOCO TRIS. 
+
+    Author: Stefano Valloncini
+*/
+
 void showCoordinates()
 {
     printf("Schema delle coordinate: \n");
@@ -75,7 +81,7 @@ char checkWinner(char mat[SIZE][SIZE])
     return ' ';
 }
 
-// Controlla se la partita è terminata o meno
+// Controlla se la partita ï¿½ terminata o meno
 int checkState(char mat[SIZE][SIZE])
 {
     int flag = 0;
@@ -147,7 +153,7 @@ int main(void)
                 if(mat[c1][c2] != ' ')
                 {
                     system("cls");
-                    printf("Le coordinate non sono valide in quanto già occupate.\n");
+                    printf("Le coordinate non sono valide in quanto giï¿½ occupate.\n");
                 }
 
             }while(mat[c1][c2] != ' ');
@@ -203,7 +209,7 @@ int main(void)
                 if(mat[c1][c2] != ' ')
                 {
                     system("cls");
-                    printf("Le coordinate non sono valide in quanto già occupate.\n");
+                    printf("Le coordinate non sono valide in quanto giï¿½ occupate.\n");
                 }
 
             }while(mat[c1][c2] != ' ');
