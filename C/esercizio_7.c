@@ -5,6 +5,7 @@
     Acquisire da tastiera una successione di interi
     che termina con il primo 0 immesso e visualizzare
     la media degli interi positivi acquisiti.
+    
 	AUTHOR: STEFANO VALLONCINI
 */
 

@@ -8,7 +8,7 @@
     Dopo avere acquisito tutti i naturali e calcolato tutti i quozienti interi e resti,
     visualizzare il quoziente intero di ciascuna divisione con resto zero.
 
-    Author: Stefano Valloncini
+    Author: STEFANO VALLONCINI
 */
 
 int main(void)
